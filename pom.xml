@@ -7,6 +7,8 @@
     <groupId>com.melnychuk.beerWEB</groupId>
     <artifactId>BeerWEB</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>wBeer</name>
 
     <properties>
         <spring-framework-version>4.3.2.RELEASE</spring-framework-version>
