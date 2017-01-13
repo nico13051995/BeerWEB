@@ -35,11 +35,12 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
+        infoWindow.setContent("Error!");
 
         var m1 = new google.maps.Marker({
             position: {lat: 49.8328609, lng: 24.0179993},
             map: map,
-            title: "Drink beer here![1]",
+            title: "Drink beer here![1]"
         });
 
         var m2 = new google.maps.Marker({
@@ -48,17 +49,17 @@
             title: "Drink beer here![2]"
         });
 
-        var infowindow = new google.maps.InfoWindow({
+        var infoW = new google.maps.InfoWindow({
             content: "content"
         });
 
         m1.addListener('click', function() {
-            infowindow.setContent(m1.getTitle());
-            infowindow.open(map, m1);
+            infoW.setContent(m1.getTitle());
+            infoW.open(map, m1);
         });
         m2.addListener('click', function() {
-            infowindow.setContent(m2.getTitle());
-            infowindow.open(map, m2);
+            infoW.setContent(m2.getTitle());
+            infoW.open(map, m2);
         });
 
             // Try HTML5 geolocation.
