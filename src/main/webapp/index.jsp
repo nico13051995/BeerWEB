@@ -35,7 +35,6 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         var infoWindow = new google.maps.InfoWindow({map: map});
-        infoWindow.setContent("Error!");
 
         var m1 = new google.maps.Marker({
             position: {lat: 49.8328609, lng: 24.0179993},
@@ -65,6 +64,7 @@
             // Try HTML5 geolocation.
             if(navigator.geolocation)
         {
+            infoWindow.setContent("Error![t]");
             navigator.geolocation.getCurrentPosition(function (position) {
                 var pos = {
                     lat: position.coords.latitude,
@@ -80,6 +80,7 @@
         }
     else
         {
+            infoWindow.setContent("Error![f]");
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
