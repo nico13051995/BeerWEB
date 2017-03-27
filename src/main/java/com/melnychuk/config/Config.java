@@ -1,4 +1,4 @@
-package com.melnychuk.beer.core;
+package com.melnychuk.config;
 
 public class Config
 {
