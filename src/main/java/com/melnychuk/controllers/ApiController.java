@@ -22,13 +22,14 @@ public class ApiController
         this.pointManager = pointManager;
     }
 
-    @RequestMapping(value = "points/{coords}", method = RequestMethod.GET)
+    @RequestMapping(value = "points/{coords:.+}", method = RequestMethod.GET)
     @ResponseBody
     public String welcome(@PathVariable String coords) throws IOException
     {
-//        String[] parsedCoords = coords.split(",");
+        String[] parsedCoords = coords.split(",");
+        SalePoint myPos = new SalePoint(null, Double.parseDouble(parsedCoords[0]), Double.parseDouble(parsedCoords[1]));
 
-        List<SalePoint> salePoints = pointManager.getSalePoints();
+        List<SalePoint> salePoints = pointManager.getSalePoints(myPos);
 
         final ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(mapper.writeValueAsString(salePoints));
@@ -36,3 +37,4 @@ public class ApiController
         return jsonNode.toString();
     }
 }
+

@@ -35,26 +35,6 @@
         infoW = new google.maps.InfoWindow({
             content: "content"
         });
-        // var m1 = new google.maps.Marker({
-        //     position: {lat: 54.8328609, lng: 24.0179993},
-        //     map: map,
-        //     title: "Drink beer here![1]"
-        // });
-        //
-        // var m2 = new google.maps.Marker({
-        //     position: {lat: 49.8128717, lng: 24.019363},
-        //     map: map,
-        //     title: "Drink beer here![2]"
-        // });
-
-        // m1.addListener('click', function () {
-        //     infoW.setContent(m1.getTitle());
-        //     infoW.open(map, m1);
-        // });
-        // m2.addListener('click', function () {
-        //     infoW.setContent(m2.getTitle());
-        //     infoW.open(map, m2);
-        // });
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -64,7 +44,7 @@
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-
+                getPoints(pos);
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('You here!');
                 map.setCenter(pos);
@@ -86,7 +66,6 @@
                 'Error: Your browser doesn\'t support geolocation.');
     }
 
-    getPoints();
 </script>
 <script type="text/javascript" async defer
         src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&callback=initMap">

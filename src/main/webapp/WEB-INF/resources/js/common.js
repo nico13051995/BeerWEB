@@ -6,8 +6,9 @@ var map;
 var infoW;
 
 
-function getPoints() {
-    var coords = '123';
+function getPoints(coords) {
+    coords = coords.lat + ',' + coords.lng;
+    //alert(coords);
     $.ajax({
         url: 'api/points/' + coords,
         method: 'GET',
