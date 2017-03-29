@@ -44,12 +44,16 @@
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+                alert(pos);
                 getPoints(pos);
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('You here!');
                 map.setCenter(pos);
             }, function () {
                 handleLocationError(true, infoWindow, map.getCenter());
+            }, {
+                enableHighAccuracy: true
+                ,timeout : 5000
             });
         }
         else {
