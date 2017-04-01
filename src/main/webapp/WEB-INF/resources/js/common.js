@@ -14,13 +14,15 @@ function getPoints(coords) {
         method: 'GET',
         success: function (response) {
             var jsonData = JSON.parse(response);
+
             var markers = new Array();
-            for (var i = 0; i < jsonData.length; i++) {
-                var point = jsonData[i];
+            for (var i = 0; i < jsonData.salePoints.length; i++) {
+                var point = jsonData.salePoints[i];
                 markers[i] = addMarker(point);
                 addInfoWindow(markers[i]);
             }
-            // console.log(markers);
+
+            $.notify(jsonData.userIp, "info");
         }
     });
 }

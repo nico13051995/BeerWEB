@@ -6,6 +6,7 @@ import com.maxmind.geoip.Location;
 import com.maxmind.geoip.LookupService;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.managers.SalePointManager;
+import com.melnychuk.objects.PointsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +40,13 @@ public class ApiController
 
         List<SalePoint> salePoints = pointManager.getSalePoints(myPos);
 
+        PointsHelper helper = new PointsHelper();
+        helper.setUserIp(request.getRemoteAddr());
+        helper.setUserLocation(myPos);
+        helper.setSalePoints(salePoints);
+
         final ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonNode = mapper.readTree(mapper.writeValueAsString(salePoints));
+        JsonNode jsonNode = mapper.readTree(mapper.writeValueAsString(helper));
 
         return jsonNode.toString();
     }

@@ -23,6 +23,7 @@
 
 <script src="<c:url value="/resources/js/jquery.min.js " />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js " />"></script>
+<script src="<c:url value="/resources/js/notify.js" />"></script>
 <script src="<c:url value="/resources/js/common.js " />"></script>
 <script>
     function initMap() {
