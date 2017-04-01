@@ -34,6 +34,7 @@ public class ApiController
         LookupService cl = new LookupService(file.getAbsolutePath(), LookupService.GEOIP_MEMORY_CACHE | LookupService.GEOIP_CHECK_CACHE);
         String ipAddress = request.getRemoteAddr();
         Location location = cl.getLocation(ipAddress);
+        if (location == null) location = cl.getLocation("95.69.203.155");
         SalePoint myPos = new SalePoint("My Location", location.latitude, location.longitude);
 
         List<SalePoint> salePoints = pointManager.getSalePoints(myPos);
