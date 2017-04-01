@@ -7,10 +7,10 @@ var infoW;
 
 
 function getPoints(coords) {
-    coords = coords.lat + ',' + coords.lng;
+    //coords = coords.lat + ',' + coords.lng;
     //alert(coords);
     $.ajax({
-        url: 'api/points/' + coords,
+        url: 'api/points',
         method: 'GET',
         success: function (response) {
             var jsonData = JSON.parse(response);

@@ -54,4 +54,10 @@ public class SalePoint
     {
         this.lng = lng;
     }
+
+    @Override
+    public String toString()
+    {
+        return "SalePoint{" + "name='" + name + '\'' + ", lat=" + lat + ", lng=" + lng + '}';
+    }
 }

@@ -35,6 +35,7 @@ public class SalePointManagerImpl implements SalePointManager
             point.setName(String.format("Distance: %skm", df.format(c * EARTH_RADIUS)));
         }
 
+        salePoints.add(0, myPos);
         return salePoints;
     }
 }

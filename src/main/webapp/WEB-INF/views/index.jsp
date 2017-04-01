@@ -44,7 +44,7 @@
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
-                alert(pos);
+//                alert(pos);
                 getPoints(pos);
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('You here!');
