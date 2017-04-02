@@ -17,11 +17,12 @@
     ymaps.ready(init);
     var myMap;
 
-    function init(){
+    function init() {
         myMap = new ymaps.Map("map", {
             center: [55.76, 37.64],
             zoom: 7
         });
+        $('#data').text('Try to find location..');
 
         ymaps.geolocation.get({
             // Выставляем опцию для определения положения по ip
