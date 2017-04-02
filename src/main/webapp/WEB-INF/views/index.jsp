@@ -15,11 +15,12 @@
 <div id="wrapper">
     <h1 class="title">Sale Points</h1>
     <div class="tabs">
-        <button class="tab" type="button">Map</button>
-        <button class="tab" type="button">List</button>
+        <button class="tab" type="button" onclick="openTab(event, 'map')">Map</button>
+        <button class="tab" type="button" onclick="openTab(event, 'products')">List</button>
     </div>
 </div>
-<div id="map"></div>
+<div id="map" class="tab-container"></div>
+<div id="products" class="tab-container" style="display: none">products</div>
 
 <script src="<c:url value="/resources/js/jquery.min.js " />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js " />"></script>
@@ -32,44 +33,46 @@
             zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        var infoWindow = new google.maps.InfoWindow({map: map});
+//        var infoWindow = new google.maps.InfoWindow({map: map});
         infoW = new google.maps.InfoWindow({
             content: "content"
         });
+        getPoints();
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            infoWindow.setContent("Error![t]");
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-//                alert(pos);
-                getPoints(pos);
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('You here!');
-                map.setCenter(pos);
-            }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
-            }, {
-                enableHighAccuracy: true
-                ,timeout : 5000
-            });
-        }
-        else {
-            infoWindow.setContent("Error![f]");
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
     }
 
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-    }
+    //        // Try HTML5 geolocation.
+    //        if (navigator.geolocation) {
+    //            infoWindow.setContent("Error![t]");
+    //            navigator.geolocation.getCurrentPosition(function (position) {
+    //                var pos = {
+    //                    lat: position.coords.latitude,
+    //                    lng: position.coords.longitude
+    //                };
+    ////                alert(pos);
+    //                infoWindow.setPosition(pos);
+    //                infoWindow.setContent('You here!');
+    //                map.setCenter(pos);
+    //            }, function () {
+    //                handleLocationError(true, infoWindow, map.getCenter());
+    //            }, {
+    //                enableHighAccuracy: true
+    //                ,timeout : 5000
+    //            });
+    //        }
+    //        else {
+    //            infoWindow.setContent("Error![f]");
+    //            // Browser doesn't support Geolocation
+    //            handleLocationError(false, infoWindow, map.getCenter());
+    //        }
+    //    }
+    //
+    //    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    //        infoWindow.setPosition(pos);
+    //        infoWindow.setContent(browserHasGeolocation ?
+    //                'Error: The Geolocation service failed.' :
+    //                'Error: Your browser doesn\'t support geolocation.');
+    //    }
 
 </script>
 <script type="text/javascript" async defer

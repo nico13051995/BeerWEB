@@ -6,7 +6,7 @@ var map;
 var infoW;
 
 
-function getPoints(coords) {
+function getPoints() {
     //coords = coords.lat + ',' + coords.lng;
     //alert(coords);
     $.ajax({
@@ -22,6 +22,9 @@ function getPoints(coords) {
                 addInfoWindow(markers[i]);
             }
 
+            map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
+            infoW.setContent(markers[0].getTitle());
+            infoW.open(map, markers[0]);
             $.notify(jsonData.userIp, "info");
         }
     });
@@ -41,4 +44,25 @@ function addInfoWindow(marker) {
             infoW.setContent(marker.getTitle());
             infoW.open(map, marker);
         });
+}
+
+function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tab-container");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tab");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
 }

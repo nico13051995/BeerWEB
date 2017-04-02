@@ -42,5 +42,8 @@ html, body {
     background-color: #5e0302;
     border: none;
     font-size: 24px;
+}
 
+.active{
+    background-color: red;
 }
