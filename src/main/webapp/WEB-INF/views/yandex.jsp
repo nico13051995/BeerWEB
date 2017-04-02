@@ -12,6 +12,7 @@
 </head>
 <body>
 <div id="map" style="width: 600px; height: 400px"></div>
+<p id="data"></p>
 <script type="text/javascript">
     ymaps.ready(init);
     var myMap;
@@ -32,7 +33,7 @@
             var data = result.geoObjects.get(0).properties.get('metaDataProperty');
             console.log(data.GeocoderMetaData.text);
             $.notify(data.GeocoderMetaData.text, "info");
-
+            $('#data').text(data.GeocoderMetaData.text);
         });
     }
 </script>
