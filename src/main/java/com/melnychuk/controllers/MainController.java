@@ -29,4 +29,12 @@ public class MainController
         model.setViewName("index");
         return model;
     }
+
+    @RequestMapping(value = "/y", method = RequestMethod.GET)
+    public ModelAndView yandex(HttpServletRequest request) throws InterruptedException, ApiException, IOException
+    {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("yandex");
+        return model;
+    }
 }

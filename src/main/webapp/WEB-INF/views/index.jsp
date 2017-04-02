@@ -38,7 +38,6 @@
             content: "content"
         });
         getPoints();
-
     }
 
     //        // Try HTML5 geolocation.
