@@ -2,20 +2,17 @@ package com.melnychuk.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.maps.errors.ApiException;
 import com.maxmind.geoip.Location;
 import com.maxmind.geoip.LookupService;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.managers.SalePointManager;
 import com.melnychuk.objects.PointsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -29,29 +26,38 @@ public class ApiController
         this.pointManager = pointManager;
     }
 
-    @RequestMapping(value = "/points", method = RequestMethod.GET)
+    @RequestMapping(value = "/points/{coords:.+}", method = RequestMethod.POST)
     @ResponseBody
-    public String welcome(HttpServletRequest request) throws IOException
+    public String points(HttpServletRequest request, @PathVariable String coords) throws IOException, InterruptedException, ApiException
     {
-        String path = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/GeoLiteCity.dat");
-        System.out.println(request.getSession().getServletContext().getRealPath("/WEB-INF/classes/GeoLiteCity.dat"));
-        LookupService cl = new LookupService(path.toString(), LookupService.GEOIP_MEMORY_CACHE | LookupService.GEOIP_CHECK_CACHE);
-        String ipAddress = request.getRemoteAddr();
-        Location location = cl.getLocation(ipAddress);
-        if (location == null) location = cl.getLocation("95.69.203.155");
-        SalePoint myPos = new SalePoint("My Location", location.latitude, location.longitude);
-
-        List<SalePoint> salePoints = pointManager.getSalePoints(myPos);
-
         PointsHelper helper = new PointsHelper();
+
+        SalePoint myPos;
+        if(coords.equals("null")) myPos = getMyPositionByIp(request);
+        else myPos = new SalePoint("My Location", Double.parseDouble(coords.split(",")[0]), Double.parseDouble(coords.split(",")[1]));
+
         helper.setUserIp(request.getRemoteAddr());
         helper.setUserLocation(myPos);
-        helper.setSalePoints(salePoints);
+        helper.setSalePoints(pointManager.getSalePoints(myPos));
 
         final ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(mapper.writeValueAsString(helper));
 
         return jsonNode.toString();
+    }
+
+    private SalePoint getMyPositionByIp(HttpServletRequest request) throws IOException
+    {
+        String path = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/GeoLiteCity.dat");
+        LookupService cl = new LookupService(path, LookupService.GEOIP_MEMORY_CACHE | LookupService.GEOIP_CHECK_CACHE);
+
+        String ipAddress = request.getRemoteAddr();
+        Location location = cl.getLocation(ipAddress);
+
+        //for locahost only
+        if (location == null) location = cl.getLocation("95.69.203.155");
+
+        return new SalePoint("My Location", location.latitude, location.longitude);
     }
 }
 

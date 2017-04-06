@@ -4,14 +4,21 @@
 // locate you.
 var map;
 var infoW;
+var myPos;
 
+function getPoints(coords) {
+    console.log(coords);
 
-function getPoints() {
-    //coords = coords.lat + ',' + coords.lng;
-    //alert(coords);
+    if (coords !== 'undefined') {
+        coords = coords.lat + ',' + coords.lng;
+    }
+    else {
+        coords = null;
+    }
+
     $.ajax({
-        url: 'api/points',
-        method: 'GET',
+        url: 'api/points/' + coords,
+        method: 'POST',
         success: function (response) {
             var jsonData = JSON.parse(response);
 
@@ -22,9 +29,10 @@ function getPoints() {
                 addInfoWindow(markers[i]);
             }
 
-            map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
-            infoW.setContent(markers[0].getTitle());
-            infoW.open(map, markers[0]);
+            myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
+            // map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
+            // infoW.setContent(markers[0].getTitle());
+            // infoW.open(map, markers[0]);
             $.notify(jsonData.userIp, "info");
         }
     });
@@ -41,9 +49,9 @@ function addMarker(point) {
 
 function addInfoWindow(marker) {
     marker.addListener('click', function () {
-            infoW.setContent(marker.getTitle());
-            infoW.open(map, marker);
-        });
+        infoW.setContent(marker.getTitle());
+        infoW.open(map, marker);
+    });
 }
 
 function openTab(evt, tabName) {
@@ -65,4 +73,9 @@ function openTab(evt, tabName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+}
+
+function handleAndroidError() {
+    map.setCenter(new google.maps.LatLng(myPos.lat, myPos.lng));
+
 }

@@ -26,14 +26,15 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://us-cdbr-iron-east-04.cleardb.net:3306/heroku_558f72d8ed1bf0e" />
-        <property name="username" value="b6f7fff532723a" />
-        <property name="password" value="f69453ba" />
+        <property name="url" value="jdbc:mysql://localhost:3306/beermap?serverTimezone=UTC" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <property name="packagesToScan" value="com.melnychuk.*"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

@@ -33,45 +33,41 @@
             zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-//        var infoWindow = new google.maps.InfoWindow({map: map});
         infoW = new google.maps.InfoWindow({
             content: "content"
         });
-        getPoints();
     }
 
-    //        // Try HTML5 geolocation.
-    //        if (navigator.geolocation) {
-    //            infoWindow.setContent("Error![t]");
-    //            navigator.geolocation.getCurrentPosition(function (position) {
-    //                var pos = {
-    //                    lat: position.coords.latitude,
-    //                    lng: position.coords.longitude
-    //                };
-    ////                alert(pos);
-    //                infoWindow.setPosition(pos);
-    //                infoWindow.setContent('You here!');
-    //                map.setCenter(pos);
-    //            }, function () {
-    //                handleLocationError(true, infoWindow, map.getCenter());
-    //            }, {
-    //                enableHighAccuracy: true
-    //                ,timeout : 5000
-    //            });
-    //        }
-    //        else {
-    //            infoWindow.setContent("Error![f]");
-    //            // Browser doesn't support Geolocation
-    //            handleLocationError(false, infoWindow, map.getCenter());
-    //        }
-    //    }
-    //
-    //    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    //        infoWindow.setPosition(pos);
-    //        infoWindow.setContent(browserHasGeolocation ?
-    //                'Error: The Geolocation service failed.' :
-    //                'Error: Your browser doesn\'t support geolocation.');
-    //    }
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+//            console.log(pos);
+            getPoints(pos);
+
+//            var infoWindow = new google.maps.InfoWindow({map: map});
+//            infoWindow.setPosition(pos);
+//            infoWindow.setContent('You here!');
+            var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+            var userMarker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                icon: im
+            });
+
+            map.setCenter(pos);
+        }, function () {
+            handleAndroidError();
+//                    handleLocationError(true, infoWindow, map.getCenter());
+        }, {
+            enableHighAccuracy: true,
+            timeout: 5000
+        });
+    } else { getPoints(undefined); }
+
 
 </script>
 <script type="text/javascript" async defer
