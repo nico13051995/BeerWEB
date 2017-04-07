@@ -17,6 +17,7 @@ public class SalePoint
     private String building;
     private double lng;
     private double lat;
+    private double distance;
 
 
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -155,6 +156,17 @@ public class SalePoint
     public void setLat(double lat)
     {
         this.lat = lat;
+    }
+
+    @Transient
+    public double getDistance()
+    {
+        return distance;
+    }
+
+    public void setDistance(double distance)
+    {
+        this.distance = distance;
     }
 
     @Override

@@ -49,7 +49,7 @@ public class SalePointManagerImpl implements SalePointManager
             double a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(Math.toRadians(point.getLat())) * Math.cos(Math.toRadians(myPos.getLat())) * Math.sin(dlng / 2) * Math.sin(dlng / 2);
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-            point.setName(String.format("Distance: %skm", df.format(c * EARTH_RADIUS)));
+            point.setDistance(c * EARTH_RADIUS);
         }
 
         return salePoints;

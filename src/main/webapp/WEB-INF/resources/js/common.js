@@ -7,7 +7,7 @@ var infoW;
 var myPos;
 
 function getPoints(coords) {
-    console.log(coords);
+    //console.log(coords);
 
     if (coords !== 'undefined') {
         coords = coords.lat + ',' + coords.lng;
@@ -20,7 +20,8 @@ function getPoints(coords) {
         url: 'api/points/' + coords,
         method: 'POST',
         success: function (response) {
-            var jsonData = JSON.parse(response);
+            //console.log(JSON.stringify( response ));
+            var jsonData = JSON.parse(JSON.stringify( response ));
 
             var markers = new Array();
             for (var i = 0; i < jsonData.salePoints.length; i++) {
@@ -42,7 +43,8 @@ function addMarker(point) {
     var m = new google.maps.Marker({
         position: {lat: point.lat, lng: point.lng},
         map: map,
-        title: point.name
+        title: point.name,
+        snippet: point.distance
     });
     return m;
 }

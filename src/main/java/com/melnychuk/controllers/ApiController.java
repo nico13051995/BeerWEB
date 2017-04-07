@@ -26,7 +26,7 @@ public class ApiController
         this.pointManager = pointManager;
     }
 
-    @RequestMapping(value = "/points/{coords:.+}", method = RequestMethod.POST)
+    @RequestMapping(value = "/points/{coords:.+}", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String points(HttpServletRequest request, @PathVariable String coords) throws IOException, InterruptedException, ApiException
     {
