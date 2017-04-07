@@ -1,10 +1,8 @@
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
+
 var map;
 var infoW;
 var myPos;
+var salePoints = [];
 
 function getPoints(coords) {
     //console.log(coords);
@@ -27,7 +25,7 @@ function getPoints(coords) {
             for (var i = 0; i < jsonData.salePoints.length; i++) {
                 var point = jsonData.salePoints[i];
                 markers[i] = addMarker(point);
-                addInfoWindow(markers[i]);
+                addInfoWindow(markers[i], point);
             }
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
@@ -43,15 +41,16 @@ function addMarker(point) {
     var m = new google.maps.Marker({
         position: {lat: point.lat, lng: point.lng},
         map: map,
-        title: point.name,
-        snippet: point.distance
+        title: point.name
     });
     return m;
 }
 
-function addInfoWindow(marker) {
+function addInfoWindow(marker, point) {
     marker.addListener('click', function () {
-        infoW.setContent(marker.getTitle());
+        // alert(point.name);
+        $('#info-logo').attr('src', point.logo);
+        $('#info-text').text(point.city + ', ' + point.street + ' №' + point.building);
         infoW.open(map, marker);
     });
 }

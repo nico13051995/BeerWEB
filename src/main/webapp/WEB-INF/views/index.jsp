@@ -33,8 +33,10 @@
             zoom: 12,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
+
+        var content = '<div id="info"><img id="info-logo" src=""><p id="info-text">місто, вулиця, номер будинку</p></div>';
         infoW = new google.maps.InfoWindow({
-            content: "content"
+            content: content
         });
     }
 
@@ -48,9 +50,6 @@
 //            console.log(pos);
             getPoints(pos);
 
-//            var infoWindow = new google.maps.InfoWindow({map: map});
-//            infoWindow.setPosition(pos);
-//            infoWindow.setContent('You here!');
             var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
             var userMarker = new google.maps.Marker({
                 position: pos,
@@ -68,10 +67,9 @@
         });
     } else { getPoints(undefined); }
 
-
 </script>
 <script type="text/javascript" async defer
-        src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?v=3.26&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&callback=initMap">
 </script>
 </body>
 </html>
