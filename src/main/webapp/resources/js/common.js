@@ -3,6 +3,7 @@ var map;
 var infoW;
 var myPos;
 var salePoints = [];
+var markers = [];
 
 function getPoints(coords) {
     //console.log(coords);
@@ -21,9 +22,11 @@ function getPoints(coords) {
             //console.log(JSON.stringify( response ));
             var jsonData = JSON.parse(JSON.stringify( response ));
 
-            var markers = new Array();
-            for (var i = 0; i < jsonData.salePoints.length; i++) {
-                var point = jsonData.salePoints[i];
+            salePoints = jsonData.salePoints;
+            //console.log(salePoints);
+
+            for (var i = 0; i < salePoints.length; i++) {
+                var point = salePoints[i];
                 markers[i] = addMarker(point);
                 addInfoWindow(markers[i], point);
             }
@@ -33,6 +36,9 @@ function getPoints(coords) {
             // infoW.setContent(markers[0].getTitle());
             // infoW.open(map, markers[0]);
             $.notify(jsonData.userIp, "info");
+
+            //$('#products').text(JSON.stringify( response ));
+            createListForPoints();
         }
     });
 }
@@ -49,9 +55,10 @@ function addMarker(point) {
 function addInfoWindow(marker, point) {
     marker.addListener('click', function () {
         // alert(point.name);
-        $('#info-logo').attr('src', point.logo);
+        //$('#info-logo').attr('src', point.logo);
         $('#info-text').text(point.city + ', ' + point.street + ' №' + point.building);
         infoW.open(map, marker);
+        map.setCenter(marker.position);
     });
 }
 
@@ -79,4 +86,39 @@ function openTab(evt, tabName) {
 function handleAndroidError() {
     map.setCenter(new google.maps.LatLng(myPos.lat, myPos.lng));
 
+}
+
+function createListForPoints() {
+    salePoints.sort(function (a, b) {
+        if (a.distance > b.distance) {
+            return 1;
+        }
+        if (a.distance < b.distance) {
+            return -1;
+        }
+        // a должно быть равным b
+        return 0;
+    });
+
+    for (var i = 0; i < salePoints.length; i++) {
+        $('#products').append(createPoint(salePoints[i]));
+    }
+}
+
+function createPoint(point) {
+    //console.log(point);
+    var adr = point.city + ', ' + point.street + ' №' + point.building;
+    var dist = Math.round(point.distance * 100) / 100;
+    var elem = $('<div class="point"><img class="p-logo"><p class="p-address">'+ adr +'</p><span class="glyphicon glyphicon-map-marker p-info">'+dist+' км</span></div>');
+
+    return elem;
+}
+
+function openAdmTab(admTab) {
+    var i;
+    var x = document.getElementsByClassName("adm-container");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(admTab).style.display = "block";
 }

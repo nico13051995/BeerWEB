@@ -13,14 +13,13 @@
 </head>
 <body>
 <div id="wrapper">
-    <h1 class="title">Sale Points</h1>
     <div class="tabs">
         <button class="tab" type="button" onclick="openTab(event, 'map')">Map</button>
-        <button class="tab" type="button" onclick="openTab(event, 'products')">List</button>
+        <button class="tab active" type="button" onclick="openTab(event, 'products')">List</button>
     </div>
 </div>
-<div id="map" class="tab-container"></div>
-<div id="products" class="tab-container" style="display: none">products</div>
+<div id="map" class="tab-container" style="display: none"></div>
+<div id="products" class="tab-container"></div>
 
 <script src="<c:url value="/resources/js/jquery.min.js " />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js " />"></script>
@@ -34,7 +33,7 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-        var content = '<div id="info"><img id="info-logo" src=""><p id="info-text">місто, вулиця, номер будинку</p></div>';
+        var content = '<div id="info"><img id="info-logo" src="<c:url value="/resources/logo.png"/>"><p id="info-text">місто, вулиця, номер будинку</p></div>';
         infoW = new google.maps.InfoWindow({
             content: content
         });

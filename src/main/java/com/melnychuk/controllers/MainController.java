@@ -22,11 +22,11 @@ public class MainController
         return model;
     }
 
-    @RequestMapping(value = "/y", method = RequestMethod.GET)
-    public ModelAndView yandex(HttpServletRequest request) throws InterruptedException, ApiException, IOException
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public ModelAndView admin(HttpServletRequest request) throws InterruptedException, ApiException, IOException
     {
         ModelAndView model = new ModelAndView();
-        model.setViewName("yandex");
+        model.setViewName("admin");
         return model;
     }
 }

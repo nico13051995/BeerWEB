@@ -1,6 +1,8 @@
 package com.melnychuk.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "sale_points", schema = "beermap")
@@ -18,6 +20,8 @@ public class SalePoint
     private double lng;
     private double lat;
     private double distance;
+    private Set<Join> joins = new HashSet<Join>();
+
 
 
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -167,6 +171,17 @@ public class SalePoint
     public void setDistance(double distance)
     {
         this.distance = distance;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "salePoint", targetEntity = Join.class,orphanRemoval = true, cascade = CascadeType.ALL)
+    public Set<Join> getJoins()
+    {
+        return joins;
+    }
+
+    public void setJoins(Set<Join> joins)
+    {
+        this.joins = joins;
     }
 
     @Override

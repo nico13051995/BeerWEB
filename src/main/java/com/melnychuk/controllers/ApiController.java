@@ -9,6 +9,7 @@ import com.melnychuk.entities.SalePoint;
 import com.melnychuk.managers.SalePointManager;
 import com.melnychuk.objects.PointsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
+@Scope("session")
 public class ApiController
 {
     private final SalePointManager pointManager;
