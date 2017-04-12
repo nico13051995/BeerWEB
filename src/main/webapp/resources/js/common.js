@@ -109,7 +109,7 @@ function createPoint(point) {
     //console.log(point);
     var adr = point.city + ', ' + point.street + ' №' + point.building;
     var info = point.name +'<br>'+ Math.round(point.distance * 100) / 100;
-    var elem = $('<div class="point"><img class="p-logo"><p class="p-address">'+ adr +'</p><span class="p-info">'+info+' км</span><span class="p-arrow"> > </span></div>');
+    var elem = $('<a href="/info/'+point.id+'"><div class="point"><img class="p-logo"><p class="p-address">'+ adr +'</p><span class="p-info">'+info+' км</span><span class="p-arrow"> > </span></div></a>');
 
     return elem;
 }
@@ -121,4 +121,8 @@ function openAdmTab(admTab) {
         x[i].style.display = "none";
     }
     document.getElementById(admTab).style.display = "block";
+}
+
+function test() {
+    alert('+');
 }

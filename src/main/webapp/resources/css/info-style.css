@@ -1,0 +1,45 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#info-header, #info-footer{
+    height: 10vh;
+    color: white;
+    background-color: #55181b;
+    position: relative;
+}
+#info-header::before{
+    content: '<';
+    font-size: 5vh;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+#info-header span{
+    padding-top: 1vh;
+    text-align: center;
+    display: block;
+    font-size: 4vh;
+    line-height: 8vh;
+}
+#info-wrapper{
+    height: 80vh;
+    color: black;
+    background-color: white;
+}
+#info-footer{
+
+}
+.info-icon{
+    display: block;
+    height: 75%;
+    background-color: white;
+}
+.info-btn{
+    float: left;
+    width: 25%;
+    height: 100%;
+    background: none;
+    border: none;
+    color: white;
+}

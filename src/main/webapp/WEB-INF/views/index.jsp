@@ -19,8 +19,8 @@
         <button class="tab active" type="button" onclick="openTab(event, 'products')">List</button>
     </div>
 </div>
-<div id="map" class="tab-container" style="display: none"></div>
-<div id="products" class="tab-container"></div>
+<div id="map" class="tab-container"></div>
+<div id="products" class="tab-container"  style="display: none"></div>
 
 <script src="<c:url value="/resources/js/jquery.min.js " />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js " />"></script>
