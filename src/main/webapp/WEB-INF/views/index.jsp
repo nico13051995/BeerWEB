@@ -50,6 +50,7 @@
             };
 //            console.log(pos);
             getPoints(pos);
+            $.notify("after getPos", "warning");
 
             var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
             var userMarker = new google.maps.Marker({

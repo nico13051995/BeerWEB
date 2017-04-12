@@ -7,10 +7,9 @@ var markers = [];
 
 function getPoints(coords) {
     console.log(coords);
-    if (coords !== 'undefined') {
+    try{
         coords = coords.lat + ',' + coords.lng;
-    }
-    else {
+    } catch (e) {
         coords = null;
     }
 
