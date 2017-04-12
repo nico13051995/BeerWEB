@@ -1,7 +1,7 @@
 
 var map;
 var infoW;
-var myPos;
+var myPos = 'wait for response';
 var salePoints = [];
 var markers = [];
 
@@ -30,6 +30,7 @@ function getPoints(coords) {
             }
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
+            console.log(myPos);
             // map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
             // infoW.setContent(markers[0].getTitle());
             // infoW.open(map, markers[0]);
