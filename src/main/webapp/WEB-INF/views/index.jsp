@@ -63,7 +63,6 @@
         }, function () {
             $.notify("error", "error");
             getPoints(undefined);
-            handleAndroidError();
 //                    handleLocationError(true, infoWindow, map.getCenter());
         }, {
             enableHighAccuracy: true,

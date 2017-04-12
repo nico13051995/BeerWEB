@@ -31,6 +31,7 @@ function getPoints(coords) {
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
             console.log(myPos);
+            if(coords === undefined) {handleAndroidError();}
             // map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
             // infoW.setContent(markers[0].getTitle());
             // infoW.open(map, markers[0]);
