@@ -41,31 +41,32 @@
     }
 
     // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-//            console.log(pos);
-            getPoints(pos);
-
-            var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
-            var userMarker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                icon: im
-            });
-
-            map.setCenter(pos);
-        }, function () {
-            getPoints(undefined);
-//                    handleLocationError(true, infoWindow, map.getCenter());
-        }, {
-            enableHighAccuracy: true,
-            timeout: 5000
-        });
-    }
+//    if (navigator.geolocation) {
+//        navigator.geolocation.getCurrentPosition(function (position) {
+//            var pos = {
+//                lat: position.coords.latitude,
+//                lng: position.coords.longitude
+//            };
+////            console.log(pos);
+//            getPoints(pos);
+//
+//            var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+//            var userMarker = new google.maps.Marker({
+//                position: pos,
+//                map: map,
+//                icon: im
+//            });
+//
+//            map.setCenter(pos);
+//        }, function () {
+//            getPoints(undefined);
+////                    handleLocationError(true, infoWindow, map.getCenter());
+//        }, {
+//            enableHighAccuracy: true,
+//            timeout: 5000
+//        });
+//    }
+    getPoints(undefined);
 
 </script>
 <script type="text/javascript" async defer

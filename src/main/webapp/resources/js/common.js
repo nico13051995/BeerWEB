@@ -28,9 +28,8 @@ function getPoints(coords) {
             }
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
-            console.log(myPos);
-            $.notify(coords, "info");
-            if (coords === undefined) {
+            alert(coords);
+            if (coords === null) {
                 handleAndroidError();
             }
             else {
