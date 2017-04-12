@@ -1,4 +1,3 @@
-
 var map;
 var infoW;
 var myPos = 'wait for response';
@@ -6,8 +5,7 @@ var salePoints = [];
 var markers = [];
 
 function getPoints(coords) {
-    console.log(coords);
-    try{
+    try {
         coords = coords.lat + ',' + coords.lng;
     } catch (e) {
         coords = null;
@@ -18,7 +16,7 @@ function getPoints(coords) {
         method: 'GET',
         success: function (response) {
             //console.log(JSON.stringify( response ));
-            var jsonData = JSON.parse(JSON.stringify( response ));
+            var jsonData = JSON.parse(JSON.stringify(response));
 
             salePoints = jsonData.salePoints;
             //console.log(salePoints);
@@ -31,7 +29,13 @@ function getPoints(coords) {
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
             console.log(myPos);
-            if(coords === undefined) {handleAndroidError();}
+            $.notify(coords, "info");
+            if (coords === undefined) {
+                handleAndroidError();
+            }
+            else {
+                $.notify(coords, "error");
+            }
             // map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
             // infoW.setContent(markers[0].getTitle());
             // infoW.open(map, markers[0]);
@@ -109,8 +113,8 @@ function createListForPoints() {
 function createPoint(point) {
     //console.log(point);
     var adr = point.city + ', ' + point.street + ' №' + point.building;
-    var info = point.name +'<br>'+ Math.round(point.distance * 100) / 100;
-    var elem = $('<a href="/info/'+point.id+'"><div class="point"><img class="p-logo"><p class="p-address">'+ adr +'</p><span class="p-info">'+info+' км</span><span class="p-arrow"> > </span></div></a>');
+    var info = point.name + '<br>' + Math.round(point.distance * 100) / 100;
+    var elem = $('<a href="/info/' + point.id + '"><div class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
 
     return elem;
 }

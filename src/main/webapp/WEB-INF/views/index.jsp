@@ -42,7 +42,6 @@
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
-        $.notify("if", "success");
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
@@ -50,7 +49,6 @@
             };
 //            console.log(pos);
             getPoints(pos);
-            $.notify("after getPos", "warning");
 
             var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
             var userMarker = new google.maps.Marker({
@@ -61,15 +59,12 @@
 
             map.setCenter(pos);
         }, function () {
-            $.notify("error", "error");
             getPoints(undefined);
 //                    handleLocationError(true, infoWindow, map.getCenter());
         }, {
             enableHighAccuracy: true,
             timeout: 5000
         });
-    } else {
-        $.notify("else", "error");
     }
 
 </script>
