@@ -6,26 +6,26 @@
     <title>Geolocation</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <c:set var="contextPath" scope="request" value="${pageContext.request.contextPath}" />
 
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-
+    <link rel="stylesheet" href="${contextPath}resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${contextPath}resources/css/style.css">
 </head>
 <body>
 <div id="wrapper">
     <div class="tabs">
-        <button class="tab" type="button" onclick="openTab(event, 'map')">Map</button>
-        <button class="tab active" type="button" onclick="openTab(event, 'products')">List</button>
+        <button class="tab active" type="button" onclick="openTab(event, 'map')">${contextPath}</button>
+        <button class="tab" type="button" onclick="openTab(event, 'products')">List</button>
     </div>
 </div>
 <div id="map" class="tab-container"></div>
-<div id="products" class="tab-container"  style="display: none"></div>
+<div id="products" class="tab-container" style="display: none"></div>
 
-<script src="<c:url value="/resources/js/jquery.min.js " />"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js " />"></script>
-<script src="<c:url value="/resources/js/notify.js" />"></script>
-<script src="<c:url value="/resources/js/common.js " />"></script>
+<script src="${contextPath}resources/js/jquery.min.js"></script>
+<script src="${contextPath}resources/js/bootstrap.min.js"></script>
+<script src="${contextPath}resources/js/notify.js"></script>
+<script src="${contextPath}resources/js/common.js"></script>
 <script>
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -65,7 +65,9 @@
             enableHighAccuracy: true,
             timeout: 5000
         });
-    } else { getPoints(undefined); }
+    } else {
+        getPoints(undefined);
+    }
 
 </script>
 <script type="text/javascript" async defer
