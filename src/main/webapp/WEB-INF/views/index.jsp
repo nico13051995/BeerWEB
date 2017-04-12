@@ -59,14 +59,13 @@
 
             map.setCenter(pos);
         }, function () {
+            getPoints(undefined);
             handleAndroidError();
 //                    handleLocationError(true, infoWindow, map.getCenter());
         }, {
             enableHighAccuracy: true,
             timeout: 5000
         });
-    } else {
-        getPoints(undefined);
     }
 
 </script>

@@ -17,7 +17,7 @@ function getPoints(coords) {
 
     $.ajax({
         url: 'api/points/' + coords,
-        method: 'POST',
+        method: 'GET',
         success: function (response) {
             //console.log(JSON.stringify( response ));
             var jsonData = JSON.parse(JSON.stringify( response ));
@@ -84,6 +84,7 @@ function openTab(evt, tabName) {
 }
 
 function handleAndroidError() {
+    console.log(myPos);
     map.setCenter(new google.maps.LatLng(myPos.lat, myPos.lng));
 
 }
