@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Geolocation</title>
+    <title>Beer Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <c:set var="contextPath" scope="request" value="${pageContext.request.contextPath}" />
@@ -15,8 +15,8 @@
 <body>
 <div id="wrapper">
     <div class="tabs">
-        <button class="tab active" type="button" onclick="openTab(event, 'map')">${contextPath}</button>
-        <button class="tab" type="button" onclick="openTab(event, 'products')">List</button>
+        <button class="tab active" type="button" onclick="openTab(event, 'map')">Карта</button>
+        <button class="tab" type="button" onclick="openTab(event, 'products')">Список</button>
     </div>
 </div>
 <div id="map" class="tab-container"></div>
