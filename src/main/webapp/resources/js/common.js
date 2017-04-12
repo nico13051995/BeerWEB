@@ -108,8 +108,8 @@ function createListForPoints() {
 function createPoint(point) {
     //console.log(point);
     var adr = point.city + ', ' + point.street + ' №' + point.building;
-    var dist = Math.round(point.distance * 100) / 100;
-    var elem = $('<div class="point"><img class="p-logo"><p class="p-address">'+ adr +'</p><span class="glyphicon glyphicon-map-marker p-info">'+dist+' км</span></div>');
+    var info = point.name +'<br>'+ Math.round(point.distance * 100) / 100;
+    var elem = $('<div class="point"><img class="p-logo"><p class="p-address">'+ adr +'</p><span class="p-info">'+info+' км</span><span class="p-arrow"> > </span></div>');
 
     return elem;
 }

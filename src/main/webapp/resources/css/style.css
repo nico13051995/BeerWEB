@@ -15,6 +15,7 @@ html, body {
     height: 10vh;
     text-align: center;
     color: white;
+    min-height: 50px;
 }
 
 .tabs{
@@ -84,7 +85,7 @@ html, body {
     margin: 0;
     top: 0;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 /*style the link*/
@@ -96,17 +97,17 @@ html, body {
 /*List*/
 .point{
     background: #c2827e;
-    /*height: 106px;*/
-    padding: 5px;
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*justify-content: space-between;*/
-    /*align-items: center;*/
+    height: 96px;
     position: relative;
     clear: both;
+    transition: 1s;
 }
 .point:nth-child(even){
     background: #b87371;
+}
+.point:hover{
+    background-color: rgb(148,103,104);
+    cursor: pointer;
 }
 .p-logo{
     float: left;
@@ -116,20 +117,34 @@ html, body {
     max-height: 96px;
     margin-right: 10px;
 }
-.point:after{
+.p-arrow{
+    display: none;
     position: absolute;
-    right: 15px;
-    top: 18px;
-    content: '>';
-    color: #c0c2c2;
-    font-size: 50px;
+    right: 10px;
+    top: 50%;
 }
 .p-address{
     color: white;
     font-size: 24px;
-    margin-top: 10px;
+    margin: 0;
 }
 .p-info{
     color: #955250;
     font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+    .point{
+        height: 64px;
+    }
+    .p-logo{
+        width: 64px;
+        max-height: 64px;
+    }
+    .p-address{
+        font-size: 14px;
+    }
+    .p-info{
+        font-size: 12px;
+    }
 }
