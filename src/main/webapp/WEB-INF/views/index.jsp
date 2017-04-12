@@ -42,6 +42,7 @@
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
+        $.notify("if", "success");
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
@@ -59,6 +60,7 @@
 
             map.setCenter(pos);
         }, function () {
+            $.notify("error", "error");
             getPoints(undefined);
             handleAndroidError();
 //                    handleLocationError(true, infoWindow, map.getCenter());
@@ -66,6 +68,8 @@
             enableHighAccuracy: true,
             timeout: 5000
         });
+    } else {
+        $.notify("else", "error");
     }
 
 </script>

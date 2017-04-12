@@ -6,8 +6,7 @@ var salePoints = [];
 var markers = [];
 
 function getPoints(coords) {
-    //console.log(coords);
-
+    console.log(coords);
     if (coords !== 'undefined') {
         coords = coords.lat + ',' + coords.lng;
     }
