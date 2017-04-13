@@ -10,7 +10,12 @@
 <div id="info-header">
     <span>Львів, Дігер-паб "Underground"</span>
 </div>
-<div id="info-wrapper"></div>
+<div id="info-wrapper">
+    <div id="img-wrapper"></div>
+    <div id="product-wrapper">
+
+    </div>
+</div>
 <div id="info-footer">
     <button type="button" onclick="test();" class="info-btn"><span class="info-icon"></span><span>Подзвонити</span></button>
     <button type="button" onclick="test();" class="info-btn"><span class="info-icon"></span><span>Доїхати</span></button>
@@ -18,6 +23,10 @@
     <button type="button" onclick="test();" class="info-btn"><span class="info-icon"></span><span>Сайт</span></button>
 </div>
 
-<script src="../../resources/js/common.js"></script>
+<script src="../../resources/js/jquery.min.js"></script>
+<script>
+    var url = 'https://maps.googleapis.com/maps/api/staticmap?autoscale=1&size=640x480&maptype=roadmap&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7CЛьвівб+Русових+11';
+    $('#img-wrapper').css({"background": "url("+url+") no-repeat center"});
+</script>
 </body>
 </html>

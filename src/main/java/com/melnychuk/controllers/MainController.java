@@ -25,7 +25,7 @@ public class MainController
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView welcome(HttpServletRequest request) throws InterruptedException, ApiException, IOException
+    public ModelAndView welcome(HttpServletRequest request)
     {
         ModelAndView model = new ModelAndView();
         model.setViewName("index");
@@ -34,7 +34,7 @@ public class MainController
     }
 
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public ModelAndView pointInfo(@PathVariable int id) throws InterruptedException, ApiException, IOException
+    public ModelAndView pointInfo(HttpServletRequest request, @PathVariable int id)
     {
         ModelAndView model = new ModelAndView();
         model.setViewName("info");

@@ -19,14 +19,20 @@ body{
     padding-top: 1vh;
     text-align: center;
     display: block;
-    font-size: 4vh;
+    font-size: 3vh;
     line-height: 8vh;
+    padding-right: 4vh;
 }
 #info-wrapper{
     height: 80vh;
     color: black;
     background-color: white;
 }
+#info-wrapper div {
+    height: 50%;
+}
+
+
 #info-footer{
 
 }
