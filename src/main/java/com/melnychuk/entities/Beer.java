@@ -1,20 +1,15 @@
 package com.melnychuk.entities;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "beers", schema = "beermap", catalog = "")
+@Table(name = "beers", schema = "beermap")
 public class Beer
 {
     private int id;
     private String name;
     private String description;
     private String logo;
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "beers")
-    private Set<SalePoint> salePoints = new HashSet<SalePoint>(0);
 
     @Id
     @Column(name = "id", nullable = false)

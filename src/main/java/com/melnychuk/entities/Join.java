@@ -22,6 +22,8 @@ public class Join
     @JsonIgnore
     private SalePoint salePoint;
 
+    private Beer beer;
+
     @Id
     @Column(name = "id")
     public int getId()
@@ -47,7 +49,7 @@ public class Join
     }
 
     @Basic
-    @Column(name = "beer_id", nullable = true)
+    @Column(name = "beer_id", nullable = true, updatable = false, insertable = false)
     public int getBeerId()
     {
         return beerId;
@@ -152,6 +154,18 @@ public class Join
     public void setSalePoint(SalePoint salePoint)
     {
         this.salePoint = salePoint;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "beer_id", referencedColumnName = "id")
+    public Beer getBeer()
+    {
+        return beer;
+    }
+
+    public void setBeer(Beer beer)
+    {
+        this.beer = beer;
     }
 
     @Override

@@ -20,7 +20,7 @@
     <div id="product-wrapper">
         <c:forEach items="${point.joins}" var="join">
             <div>
-                ${join.beerId}
+                ${join.beer.name}
             </div>
         </c:forEach>
     </div>
