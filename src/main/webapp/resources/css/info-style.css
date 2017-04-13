@@ -12,8 +12,9 @@ body{
     content: '<';
     font-size: 5vh;
     position: absolute;
-    top: 30px;
     left: 10px;
+    top: 50%;
+    transform: translateY(-50%)
 }
 #info-header span{
     padding-top: 1vh;
@@ -28,18 +29,19 @@ body{
     color: black;
     background-color: white;
 }
-#info-wrapper div {
+#img-wrapper{
     height: 50%;
 }
-
-
+#product-wrapper{
+    height: 50%;
+}
 #info-footer{
 
 }
 .info-icon{
     display: block;
     height: 75%;
-    background-color: white;
+    /*background-color: white;*/
 }
 .info-btn{
     float: left;
@@ -48,4 +50,27 @@ body{
     background: none;
     border: none;
     color: white;
+}
+#product-wrapper{
+    background-color: #c2827e;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    overflow: auto;
+}
+.beer{
+    height: 120px;
+}
+.b-logo{
+    float: left;
+    width: 40px;
+    height: auto;
+    max-height: 120px;
+    margin: 0 50px 0 10px;
+}
+.b-name{
+    font-weight: bold;
+}
+.b-info{
+    font-style: italic;
 }

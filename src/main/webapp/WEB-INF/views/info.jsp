@@ -19,17 +19,19 @@
     <div id="img-wrapper"></div>
     <div id="product-wrapper">
         <c:forEach items="${point.joins}" var="join">
-            <div>
-                ${join.beer.name}
+            <div class="beer">
+                <img class="b-logo" src="${join.beer.logo}" alt="${join.beer.name}">
+                <p class="b-name">${join.beer.name}</p>
+                <p class="b-info">${join.beer.description}</p>
             </div>
         </c:forEach>
     </div>
 </div>
 <div id="info-footer">
-    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"></span><span>Подзвонити</span></button>
-    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"></span><span>Доїхати</span></button>
-    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"></span><span>Пошта</span></button>
-    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"></span><span>Сайт</span></button>
+    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"><i class="fa fa-phone fa-4x"></i></span><span>Подзвонити</span></button>
+    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"><i class="fa fa-road fa-4x"></i></span><span>Доїхати</span></button>
+    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"><i class="fa fa-envelope fa-4x"></i></span><span>Пошта</span></button>
+    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"><i class="fa fa-home fa-4x"></i></span><span>Сайт</span></button>
 </div>
 
 <script src="${root}resources/js/jquery.min.js"></script>
