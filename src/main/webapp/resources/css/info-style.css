@@ -10,15 +10,16 @@ body{
 }
 #info-header::before{
     content: '<';
-    font-size: 5vh;
     position: absolute;
     left: 10px;
     top: 50%;
-    transform: translateY(-50%)
+    transform: translateY(-50%);
+    font-weight: bolder;
+    font-size: 8vh;
 }
 #info-header span{
     padding-top: 1vh;
-    text-align: center;
+    text-align: right;
     display: block;
     font-size: 3vh;
     line-height: 8vh;
