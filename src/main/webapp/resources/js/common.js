@@ -31,9 +31,6 @@ function getPoints(coords) {
             if (coords === null) {
                 handleAndroidError();
             }
-            else {
-                $.notify(coords, "error");
-            }
             // map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
             // infoW.setContent(markers[0].getTitle());
             // infoW.open(map, markers[0]);
@@ -86,9 +83,8 @@ function openTab(evt, tabName) {
 }
 
 function handleAndroidError() {
-    console.log(myPos);
+    // console.log(myPos);
     map.setCenter(new google.maps.LatLng(myPos.lat, myPos.lng));
-
 }
 
 function createListForPoints() {
