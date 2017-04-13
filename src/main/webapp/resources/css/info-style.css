@@ -56,8 +56,14 @@ body{
     background-color: #c2827e;
     border-radius: 5px;
     margin: 10px;
-    padding: 10px;
     overflow: auto;
+}
+#product-wrapper-header{
+    background-color: #8c3938;
+    font-size: 3vh;
+    font-weight: bold;
+    padding: 5px 10px;
+    color: white;
 }
 .beer{
     height: 120px;
@@ -74,4 +80,11 @@ body{
 }
 .b-info{
     font-style: italic;
+}
+.p-icon{
+    float: right;
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*right: 10px;*/
+    /*transform: translateY(-50%);*/
 }

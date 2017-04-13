@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <c:url value="/" var="root" />
 
-    <link rel="stylesheet" href="${root}resources/css/info-style.css">
     <link rel="stylesheet" href="${root}resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${root}resources/css/info-style.css">
 </head>
 <body>
 <div id="info-header">
@@ -18,6 +18,10 @@
 <div id="info-wrapper">
     <div id="img-wrapper"></div>
     <div id="product-wrapper">
+        <div id="product-wrapper-header">
+            <span>Товари:</span>
+            <i class="fa fa-beer p-icon"></i>
+        </div>
         <c:forEach items="${point.joins}" var="join">
             <div class="beer">
                 <img class="b-logo" src="${join.beer.logo}" alt="${join.beer.name}">
