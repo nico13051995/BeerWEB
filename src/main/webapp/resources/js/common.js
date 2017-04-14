@@ -54,10 +54,10 @@ function addMarker(point) {
 function addInfoWindow(marker, point) {
     marker.addListener('click', function () {
         // alert(point.name);
-        //$('#info-logo').attr('src', point.logo);
+        $('#info-link').attr('href', 'info/'+point.id);
         $('#info-text').text(point.city + ', ' + point.street + ' №' + point.building);
-        infoW.open(map, marker);
         map.setCenter(marker.position);
+        infoW.open(map, marker);
     });
 }
 

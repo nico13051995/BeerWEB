@@ -1,3 +1,6 @@
+html{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 body{
     margin: 0;
     padding: 0;
@@ -14,9 +17,7 @@ body{
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    right: 10px;
     font-size: 4vh;
-    color: #c0c4c4;
 }
 #info-header span{
     padding-top: 1vh;
@@ -35,7 +36,7 @@ body{
     height: 50%;
 }
 #product-wrapper{
-    height: 50%;
+    height: 46%;
 }
 #info-footer{
 
