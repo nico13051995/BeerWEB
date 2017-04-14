@@ -63,7 +63,12 @@ html, body {
     padding: 0;
     font-size: 14px;
 }
+#info-text-head{
+    /*font-weight: bold;*/
+    /*font-size: 18px;*/
+}
 #info-text-body{
+    font-style: italic;
     position: absolute;
     right: 0;
     bottom: 0;

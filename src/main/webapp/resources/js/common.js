@@ -34,7 +34,7 @@ function getPoints(coords) {
             // map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
             // infoW.setContent(markers[0].getTitle());
             // infoW.open(map, markers[0]);
-            $.notify(jsonData.userIp, "info");
+            // $.notify(jsonData.userIp, "info");
 
             //$('#products').text(JSON.stringify( response ));
             createListForPoints();
@@ -122,8 +122,4 @@ function openAdmTab(admTab) {
         x[i].style.display = "none";
     }
     document.getElementById(admTab).style.display = "block";
-}
-
-function test() {
-    alert('+');
 }

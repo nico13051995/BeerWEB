@@ -11,13 +11,15 @@ body{
     background-color: #55181b;
     position: relative;
 }
-#info-header::before{
-    content: '<';
+#info-header a{
+    text-decoration: none;
+    color: white;
+
     position: absolute;
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 4vh;
+    /*font-size: 4vh;*/
 }
 #info-header span{
     padding-top: 1vh;
@@ -58,7 +60,7 @@ body{
     background-color: #c2827e;
     border-radius: 5px;
     margin: 10px;
-    overflow: auto;
+    overflow: hidden;
 }
 #product-wrapper-header{
     background-color: #8c3938;
@@ -66,6 +68,10 @@ body{
     font-weight: bold;
     padding: 5px 10px;
     color: white;
+}
+#beers-wrapper{
+    height:100%;
+    overflow: auto;
 }
 .beer{
     height: 120px;
