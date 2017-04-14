@@ -97,6 +97,9 @@ html, body {
 }
 
 /*List*/
+#products a{
+    text-decoration: none;
+}
 .point{
     background: #c2827e;
     height: 96px;
@@ -104,13 +107,19 @@ html, body {
     clear: both;
     transition: 1s;
 }
-.point:nth-child(even){
+.point:nth-child(odd){
     background: #b87371;
 }
-.point:hover{
-    background-color: rgb(148,103,104);
-    cursor: pointer;
+.point::after{
+    content: '>';
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
 }
+/*.point:hover{*/
+    /*background-color: rgb(148,103,104);*/
+    /*cursor: pointer;*/
+/*}*/
 .p-logo{
     float: left;
     content: url("../logo.png");

@@ -14,8 +14,9 @@ body{
     left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: bolder;
-    font-size: 8vh;
+    right: 10px;
+    font-size: 4vh;
+    color: #c0c4c4;
 }
 #info-header span{
     padding-top: 1vh;

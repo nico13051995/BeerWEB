@@ -108,7 +108,7 @@ function createPoint(point) {
     //console.log(point);
     var adr = point.city + ', ' + point.street + ' №' + point.building;
     var info = point.name + '<br>' + Math.round(point.distance * 100) / 100;
-    var elem = $('<a href="/info/' + point.id + '"><div class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
+    var elem = $('<div onclick="window.open(\'info/'+point.id+'\');" class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
 
     return elem;
 }
