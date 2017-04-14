@@ -53,9 +53,11 @@ function addMarker(point) {
 
 function addInfoWindow(marker, point) {
     marker.addListener('click', function () {
-        // alert(point.name);
+        var adr = point.city + ', ' + point.street + ' №' + point.building;
+        var info = point.name + ', ' +  Math.round(point.distance * 100) / 100 + 'км';
         $('#info-link').attr('href', 'info/'+point.id);
-        $('#info-text').text(point.city + ', ' + point.street + ' №' + point.building);
+        $('#info-text-head').text(adr);
+        $('#info-text-body').text(info);
         map.setCenter(marker.position);
         infoW.open(map, marker);
     });

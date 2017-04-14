@@ -34,7 +34,7 @@ html, body {
     /*max-width: 50%;*/
     background-color: #5e0302;
     border: none;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .active{
@@ -44,34 +44,37 @@ html, body {
 #info{
     background-color: #444444;
     color: white;
-    /*height: 120px;*/
+    height: 64px;
+    min-width: 300px;
+    text-align: right;
+    position: relative;
 }
-/*#info::after{*/
-    /*content: '';*/
-    /*display: table;*/
-    /*clear: both;*/
-/*}*/
 #info img{
     float: left;
     width: 64px;
     height: auto;
-    /*max-height: 64px;*/
+    /*border: 1px solid #5e0302;*/
+    /*border-radius: 50%;*/
 }
 
 #info p{
-    float: right;
+    /*float: right;*/
     margin: 0;
     padding: 0;
     font-size: 14px;
 }
-
+#info-text-body{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 .gm-style .gm-style-iw {
     background-color: #444444 !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    /*min-height: 120px !important;*/
+    min-height: 32px !important;
     min-width: 250px !important;
     padding-top: 10px;
     display: block !important;
@@ -81,8 +84,6 @@ html, body {
 .gm-style .gm-style-iw #google-popup p{
     padding: 10px;
 }
-
-
 /*style the arrow*/
 .gm-style div div div div div div div div {
     background-color: #444444 !important;
