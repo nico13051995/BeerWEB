@@ -96,3 +96,15 @@ body{
     /*right: 10px;*/
     /*transform: translateY(-50%);*/
 }
+.i-phone{
+    background: url("../images/phone.png") no-repeat center;
+}
+.i-map{
+    background: url("../images/map.png") no-repeat center;
+}
+.i-mail{
+    background: url("../images/mail.png") no-repeat center;
+}
+.i-site{
+    background: url("../images/site.png") no-repeat center;
+}

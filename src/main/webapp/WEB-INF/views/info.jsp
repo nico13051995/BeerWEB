@@ -36,15 +36,12 @@
     </div>
 </div>
 <div id="info-footer">
-    <button type="button" onclick="onclick=window.open('tel:${point.phone}');" class="info-btn"><span class="info-icon"><i
-            class="fa fa-phone fa-4x"></i></span>Подзвонити
+    <button type="button" onclick="onclick=window.open('tel:${point.phone}');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
     </button>
-    <button type="button" onclick="test();" class="info-btn"><span class="info-icon"><i
-            class="fa fa-road fa-4x"></i></span><span>Доїхати</span></button>
+    <button type="button" onclick="test();" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
     <button type="button" onclick="onclick=window.open('mailto:${point.mail}');" class="info-btn"><span
-            class="info-icon"><i class="fa fa-envelope-o fa-4x"></i></span><span>Пошта</span></button>
-    <button type="button" onclick="window.open('${point.site}');" class="info-btn"><span class="info-icon"><i
-            class="fa fa-home fa-4x"></i></span><span>Сайт</span></button>
+            class="info-icon i-mail"></span><span>Пошта</span></button>
+    <button type="button" onclick="window.open('${point.site}');" class="info-btn"><span class="info-icon i-site"></span><span>Сайт</span></button>
 </div>
 
 <script src="${root}resources/js/jquery.min.js"></script>
