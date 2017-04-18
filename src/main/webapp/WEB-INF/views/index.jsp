@@ -34,9 +34,11 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-        var content = '<a id="info-link" href="#"><div id="info"><img id="info-logo" src="<c:url value="/resources/logo.png"/>"><p id="info-text-head">місто, вулиця, номер будинку</p><p id = info-text-body>Назва магазину, відстань</p></div></a>';
-        infoW = new google.maps.InfoWindow({
-            content: content
+        map.addListener("click", function() {
+            console.log(windows);
+            for (var i = 0; i < windows.length; i++ ) {
+                windows[i].close();
+            }
         });
     }
 

@@ -1,8 +1,11 @@
 var map;
-var infoW;
 var myPos = 'wait for response';
 var salePoints = [];
-var markers = [];
+var windows = [];
+
+var joins = [];
+
+var count = 0;
 
 function getPoints(coords) {
     try {
@@ -23,44 +26,52 @@ function getPoints(coords) {
 
             for (var i = 0; i < salePoints.length; i++) {
                 var point = salePoints[i];
-                markers[i] = addMarker(point);
-                addInfoWindow(markers[i], point);
+
+                var marker = new google.maps.Marker({
+                    position: {lat: point.lat, lng: point.lng},
+                    map: map,
+                    title: point.name
+                });
+
+                // markers[i] = marker;
+
+                addInfoWindow(marker, point);
             }
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
             if (coords === null) {
                 handleAndroidError();
             }
-            // map.setCenter(new google.maps.LatLng(jsonData.userLocation.lat, jsonData.userLocation.lng));
-            // infoW.setContent(markers[0].getTitle());
-            // infoW.open(map, markers[0]);
-            // $.notify(jsonData.userIp, "info");
 
-            //$('#products').text(JSON.stringify( response ));
             createListForPoints();
         }
     });
 }
 
 function addMarker(point) {
-    var m = new google.maps.Marker({
+    return new google.maps.Marker({
         position: {lat: point.lat, lng: point.lng},
         map: map,
         title: point.name
     });
-    return m;
 }
 
 function addInfoWindow(marker, point) {
+    var adr = point.city + ', ' + point.street + ' №' + point.building;
+    var info = point.name + ', ' + Math.round(point.distance * 100) / 100 + 'км';
+
+    var content = '<a id="info-link" href="info/'+ point.id +'"><div id="info"><img id="info-logo" src="/resources/logo.png"><p id="info-text-head">'+ info +'</p><p id = info-text-body>'+ adr +'</p></div></a>';
+
+    var infoW = new google.maps.InfoWindow({
+        content: content
+    });
+
+    // windows.push(infoW);
+
     marker.addListener('click', function () {
-        var adr = point.city + ', ' + point.street + ' №' + point.building;
-        var info = point.name + ', ' +  Math.round(point.distance * 100) / 100 + 'км';
-        $('#info-link').attr('href', 'info/'+point.id);
-        $('#info-text-head').text(adr);
-        $('#info-text-body').text(info);
-        map.setCenter(marker.position);
         infoW.open(map, marker);
     });
+
 }
 
 function openTab(evt, tabName) {
@@ -110,7 +121,7 @@ function createPoint(point) {
     //console.log(point);
     var adr = point.city + ', ' + point.street + ' №' + point.building;
     var info = point.name + '<br>' + Math.round(point.distance * 100) / 100;
-    var elem = $('<div onclick="window.open(\'info/'+point.id+'\');" class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
+    var elem = $('<div onclick="window.open(\'info/' + point.id + '\');" class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
 
     return elem;
 }
