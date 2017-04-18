@@ -48,8 +48,9 @@
 <script>
     var adr = '${point.city}+${point.street}+${point.building}';
     adr = adr.replace(/\s+/g, '+');
-//    alert(adr);
-    var url = 'https://maps.googleapis.com/maps/api/staticmap?autoscale=2&size=640x640&zoom=17&maptype=roadmap&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&format=gif&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C'+adr+'';
+    var size = $('#img-wrapper').width() * 2 + 'x' + $('#img-wrapper').height() * 2;
+//    console.log(size);
+    var url = 'https://maps.googleapis.com/maps/api/staticmap?autoscale=2&size='+ size +'&zoom=17&maptype=roadmap&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C'+adr+'';
     $('#img-wrapper').css({"background": "url(" + url + ") no-repeat center"});
 </script>
 </body>

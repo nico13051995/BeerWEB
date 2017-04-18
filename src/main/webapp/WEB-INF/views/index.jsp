@@ -52,13 +52,6 @@
 //            console.log(pos);
             getPoints(pos);
 
-//            var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
-//            var userMarker = new google.maps.Marker({
-//                position: pos,
-//                map: map,
-//                icon: im
-//            });
-
             map.setCenter(pos);
         }, function () {
             getPoints(undefined);
