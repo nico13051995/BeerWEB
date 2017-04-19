@@ -44,13 +44,14 @@
 <div id="info-footer">
     <button type="button" onclick="onclick=window.open('tel:+38096029-29-29');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
     </button>
-    <button type="button" onclick="test();" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
+    <button type="button" onclick="my_road('${point}', '${userLocation}');" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
     <button type="button" onclick="onclick=window.open('mailto:info@umanpivo.ua');" class="info-btn"><span
             class="info-icon i-mail"></span><span>Пошта</span></button>
     <button type="button" onclick="window.open('http://umanpivo.ua/');" class="info-btn"><span class="info-icon i-site"></span><span>Сайт</span></button>
 </div>
 
 <script src="${root}resources/js/jquery.min.js"></script>
+<script src="${root}resources/js/common.js"></script>
 <script>
     var adr = '${point.city}+${point.street}+${point.building}'.replace(/\s+/g, '+');
 //    var size = $('#img-wrapper').width() * 2 + 'x' + $('#img-wrapper').height() * 2;

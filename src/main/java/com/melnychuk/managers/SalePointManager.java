@@ -12,4 +12,8 @@ public interface SalePointManager
     List<SalePoint> getSalePoints(SalePoint myPos) throws IOException, ApiException, InterruptedException;
 
     LatLng makeGeocodeDataFromInfo(String address) throws InterruptedException, ApiException, IOException;
+
+    String getUserLocation();
+
+    void setUserLocation(String address);
 }

@@ -3,9 +3,7 @@ var myPos = 'wait for response';
 var salePoints = [];
 var windows = [];
 
-var joins = [];
-
-var count = 0;
+var curPoint;
 
 function getPoints(coords) {
     try {
@@ -39,6 +37,7 @@ function getPoints(coords) {
             }
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
+            // alert(myPos);
             if (coords === null) {
                 handleAndroidError();
             }
@@ -60,7 +59,7 @@ function addInfoWindow(marker, point) {
     var adr = point.city + ', ' + point.street + ' №' + point.building;
     var info = point.name + ', ' + Math.round(point.distance * 100) / 100 + 'км';
 
-    var content = '<a id="info-link" href="info/'+ point.id +'"><div id="info"><img id="info-logo" src="/resources/logo.png"><p id="info-text-head">'+ info +'</p><p id = info-text-body>'+ adr +'</p></div></a>';
+    var content = '<a id="info-link" href="info/' + point.id + '"><div id="info"><img id="info-logo" src="/resources/logo.png"><p id="info-text-head">' + info + '</p><p id = info-text-body>' + adr + '</p></div></a>';
 
     var infoW = new google.maps.InfoWindow({
         content: content
@@ -133,4 +132,12 @@ function openAdmTab(admTab) {
         x[i].style.display = "none";
     }
     document.getElementById(admTab).style.display = "block";
+}
+
+function my_road(p, u) {
+    console.log(u);
+    // var adr = curPoint.city + ', ' + curPoint.street + ' №' + curPoint.building;
+
+    var src = 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&origin='+ u +'&destination='+ p +'&avoid=tolls|highways';
+    $('#map-frame').attr("src", src);
 }

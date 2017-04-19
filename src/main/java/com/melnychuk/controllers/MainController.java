@@ -3,7 +3,9 @@ package com.melnychuk.controllers;
 import com.google.maps.errors.ApiException;
 import com.melnychuk.dao.interfaces.SalePointDao;
 import com.melnychuk.entities.SalePoint;
+import com.melnychuk.managers.SalePointManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,14 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Controller
+@Scope("session")
 public class MainController
 {
+    private final SalePointManager salePointManager;
     private final SalePointDao salePointDao;
 
     @Autowired
-    public MainController(SalePointDao salePointDao)
+    public MainController(SalePointDao salePointDao, SalePointManager salePointManager)
     {
         this.salePointDao = salePointDao;
+        this.salePointManager = salePointManager;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -39,7 +44,10 @@ public class MainController
         model.setViewName("info");
 
         SalePoint point = salePointDao.getPointById(id);
+        String userLocation = salePointManager.getUserLocation();
+
         model.getModel().put("point", point);
+        model.getModel().put("userLocation", userLocation);
 
         return model;
     }

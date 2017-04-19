@@ -25,6 +25,8 @@ public class SalePointManagerImpl implements SalePointManager
     private DecimalFormat df = new DecimalFormat("#.##");
 
     private List<SalePoint> salePoints;
+    private String userLocation;
+
 
     @Autowired
     public SalePointManagerImpl(SalePointDao salePointDao)
@@ -37,6 +39,7 @@ public class SalePointManagerImpl implements SalePointManager
     public List<SalePoint> getSalePoints(SalePoint myPos) throws IOException, ApiException, InterruptedException
     {
         salePoints = salePointDao.getSalePoints();
+        userLocation = String.format("%s,%s", myPos.getLat(), myPos.getLng());
 
         for (SalePoint point : salePoints)
         {
@@ -81,5 +84,17 @@ public class SalePointManagerImpl implements SalePointManager
         //                return null;
         //            }
         //        });
+    }
+
+    @Override
+    public String getUserLocation()
+    {
+        return userLocation;
+    }
+
+    @Override
+    public void setUserLocation(String address)
+    {
+        this.userLocation = address;
     }
 }
