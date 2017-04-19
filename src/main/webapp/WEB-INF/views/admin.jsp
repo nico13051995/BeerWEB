@@ -7,9 +7,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
+    <c:set var="contextPath" scope="request" value="${pageContext.request.contextPath}"/>
 
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/adm-style.css"/>">
+    <link rel="stylesheet" href="${contextPath}resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${contextPath}resources/css/adm-style.css">
 </head>
 <body>
 
@@ -27,7 +29,11 @@
 
     <div id="adm-containers">
         <div id="item" class="adm-container">
-            <button class="btn btn-upload">Upload sheets</button>
+            <form class="upload-form" action="${pageContext.request.contextPath}/uploadFIle" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                <button type="submit" class="btn btn-success btn-upload"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                <input required type="file" name="file" class="btn btn-upload" placeholder="Upload sheets"/>
+            </form>
+
             <h2>Sale points</h2>
             <table id="users_table">
                 <tbody>
@@ -42,10 +48,10 @@
                     <th>Building</th>
                 </tr>
                 <%--<tr>--%>
-                    <%--<td></td>--%>
-                    <%--<td><input onclick="" type="checkbox"--%>
-                               <%--checked/>--%>
-                    <%--</td>--%>
+                <%--<td></td>--%>
+                <%--<td><input onclick="" type="checkbox"--%>
+                <%--checked/>--%>
+                <%--</td>--%>
                 <%--</tr>--%>
                 </tbody>
             </table>
@@ -62,10 +68,10 @@
 
                 </tr>
                 <%--<tr>--%>
-                    <%--<td></td>--%>
-                    <%--<td><input onclick="" type="checkbox"--%>
-                               <%--checked/>--%>
-                    <%--</td>--%>
+                <%--<td></td>--%>
+                <%--<td><input onclick="" type="checkbox"--%>
+                <%--checked/>--%>
+                <%--</td>--%>
                 <%--</tr>--%>
                 </tbody>
             </table>
@@ -87,10 +93,10 @@
                     <th>k50</th>
                 </tr>
                 <%--<tr>--%>
-                    <%--<td></td>--%>
-                    <%--<td><input onclick="" type="checkbox"--%>
-                               <%--checked/>--%>
-                    <%--</td>--%>
+                <%--<td></td>--%>
+                <%--<td><input onclick="" type="checkbox"--%>
+                <%--checked/>--%>
+                <%--</td>--%>
                 <%--</tr>--%>
                 </tbody>
             </table>
@@ -101,12 +107,9 @@
     </div>
 </div>
 
-<script src="<c:url value="/resources/js/jquery.min.js " />"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js " />"></script>
-<script src="<c:url value="/resources/js/notify.js" />"></script>
-<script src="<c:url value="/resources/js/common.js " />"></script>
-<script type="text/javascript">
-
-</script>
+<script src="${contextPath}resources/js/jquery.min.js"></script>
+<script src="${contextPath}resources/js/bootstrap.min.js"></script>
+<script src="${contextPath}resources/js/notify.js"></script>
+<script src="${contextPath}resources/js/common.js"></script>
 </body>
 </html>

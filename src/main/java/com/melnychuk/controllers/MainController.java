@@ -5,9 +5,8 @@ import com.melnychuk.dao.interfaces.SalePointDao;
 import com.melnychuk.entities.SalePoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,5 +50,19 @@ public class MainController
         ModelAndView model = new ModelAndView();
         model.setViewName("admin");
         return model;
+    }
+
+    @RequestMapping(value = "/uploadFIle", method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadFile(@RequestParam("file") MultipartFile file)
+    {
+        String name = null;
+
+        if(!file.isEmpty())
+        {
+            name = file.getOriginalFilename();
+        }
+
+        return name;
     }
 }

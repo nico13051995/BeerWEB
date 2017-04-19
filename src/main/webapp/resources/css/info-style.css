@@ -46,7 +46,7 @@ body{
 .info-icon{
     display: block;
     height: 75%;
-    transform: scale(.65);
+    transform: scale(.05);
 }
 .info-btn{
     float: left;
@@ -98,14 +98,14 @@ body{
     float: right;
 }
 .i-phone{
-    background: url("../images/phone.png") no-repeat center;
+    background: url("../images/beer-mug.svg") no-repeat center;
 }
 .i-map{
-    background: url("../images/map.png") no-repeat center;
+    background: url("../images/next.svg") no-repeat center;
 }
 .i-mail{
-    background: url("../images/mail.png") no-repeat center;
+    background: url("../images/envelope.svg") no-repeat center;
 }
 .i-site{
-    background: url("../images/site.png") no-repeat center;
+    background: url("../images/house.svg") no-repeat center;
 }
