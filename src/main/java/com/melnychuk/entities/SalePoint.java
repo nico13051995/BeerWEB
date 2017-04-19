@@ -5,15 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "sale_points", schema = "beermap")
+@Table(name = "sale_points", schema = "heroku_b196e4189240738")
 public class SalePoint
 {
     private int id;
     private String name;
-    private String logo;
-    private int phone;
-    private String mail;
-    private String site;
     private String city;
     private String street;
     private String building;
@@ -52,54 +48,6 @@ public class SalePoint
     public void setName(String name)
     {
         this.name = name;
-    }
-
-    @Basic
-    @Column(name = "logo", nullable = true, length = -1)
-    public String getLogo()
-    {
-        return logo;
-    }
-
-    public void setLogo(String logo)
-    {
-        this.logo = logo;
-    }
-
-    @Basic
-    @Column(name = "phone", nullable = false)
-    public int getPhone()
-    {
-        return phone;
-    }
-
-    public void setPhone(int phone)
-    {
-        this.phone = phone;
-    }
-
-    @Basic
-    @Column(name = "mail", nullable = false, length = 32)
-    public String getMail()
-    {
-        return mail;
-    }
-
-    public void setMail(String mail)
-    {
-        this.mail = mail;
-    }
-
-    @Basic
-    @Column(name = "site", nullable = false, length = -1)
-    public String getSite()
-    {
-        return site;
-    }
-
-    public void setSite(String site)
-    {
-        this.site = site;
     }
 
     @Basic
@@ -193,13 +141,9 @@ public class SalePoint
         SalePoint point = (SalePoint) o;
 
         if (id != point.id) return false;
-        if (phone != point.phone) return false;
         if (Double.compare(point.lng, lng) != 0) return false;
         if (Double.compare(point.lat, lat) != 0) return false;
         if (name != null ? !name.equals(point.name) : point.name != null) return false;
-        if (logo != null ? !logo.equals(point.logo) : point.logo != null) return false;
-        if (mail != null ? !mail.equals(point.mail) : point.mail != null) return false;
-        if (site != null ? !site.equals(point.site) : point.site != null) return false;
         if (city != null ? !city.equals(point.city) : point.city != null) return false;
         if (street != null ? !street.equals(point.street) : point.street != null) return false;
         if (building != null ? !building.equals(point.building) : point.building != null) return false;
@@ -214,10 +158,6 @@ public class SalePoint
         long temp;
         result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (logo != null ? logo.hashCode() : 0);
-        result = 31 * result + phone;
-        result = 31 * result + (mail != null ? mail.hashCode() : 0);
-        result = 31 * result + (site != null ? site.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (street != null ? street.hashCode() : 0);
         result = 31 * result + (building != null ? building.hashCode() : 0);

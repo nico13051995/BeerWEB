@@ -17,7 +17,13 @@
     <span>${point.city}, ${point.name}</span>
 </div>
 <div id="info-wrapper">
-    <div id="img-wrapper"></div>
+    <div id="img-wrapper">
+        <iframe id="map-frame"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o
+    &q=Space+Needle,Seattle+WA" allowfullscreen>
+        </iframe>
+    </div>
     <div id="product-wrapper">
         <div id="product-wrapper-header">
             <span>Товари:</span>
@@ -36,22 +42,23 @@
     </div>
 </div>
 <div id="info-footer">
-    <button type="button" onclick="onclick=window.open('tel:${point.phone}');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
+    <button type="button" onclick="onclick=window.open('tel:+38096029-29-29');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
     </button>
     <button type="button" onclick="test();" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
-    <button type="button" onclick="onclick=window.open('mailto:${point.mail}');" class="info-btn"><span
+    <button type="button" onclick="onclick=window.open('mailto:info@umanpivo.ua');" class="info-btn"><span
             class="info-icon i-mail"></span><span>Пошта</span></button>
-    <button type="button" onclick="window.open('${point.site}');" class="info-btn"><span class="info-icon i-site"></span><span>Сайт</span></button>
+    <button type="button" onclick="window.open('http://umanpivo.ua/');" class="info-btn"><span class="info-icon i-site"></span><span>Сайт</span></button>
 </div>
 
 <script src="${root}resources/js/jquery.min.js"></script>
 <script>
-    var adr = '${point.city}+${point.street}+${point.building}';
-    adr = adr.replace(/\s+/g, '+');
-    var size = $('#img-wrapper').width() * 2 + 'x' + $('#img-wrapper').height() * 2;
+    var adr = '${point.city}+${point.street}+${point.building}'.replace(/\s+/g, '+');
+//    var size = $('#img-wrapper').width() * 2 + 'x' + $('#img-wrapper').height() * 2;
 //    console.log(size);
-    var url = 'https://maps.googleapis.com/maps/api/staticmap?autoscale=2&size='+ size +'&zoom=17&maptype=roadmap&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C'+adr+'';
-    $('#img-wrapper').css({"background": "url(" + url + ") no-repeat center"});
+    var src = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&q='+ adr +'';
+//    var url = 'https://maps.googleapis.com/maps/api/staticmap?autoscale=2&size='+ size +'&zoom=17&maptype=roadmap&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C'+adr+'';
+    $('#map-frame').attr("src", src);
+//    console.log(src);
 </script>
 </body>
 </html>

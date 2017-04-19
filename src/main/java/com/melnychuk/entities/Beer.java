@@ -3,7 +3,7 @@ package com.melnychuk.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "beers", schema = "beermap")
+@Table(name = "beers", schema = "heroku_b196e4189240738")
 public class Beer
 {
     private int id;
