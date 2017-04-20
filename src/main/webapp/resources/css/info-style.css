@@ -50,7 +50,7 @@ body{
 .info-icon{
     display: block;
     height: 75%;
-    transform: scale(.05);
+    transform: scale(.75);
 }
 .info-btn{
     float: left;
@@ -80,9 +80,7 @@ body{
 .beer{
     height: 120px;
     padding: 10px 0;
-}
-.beer:nth-child(2n){
-    background-color: #8c3938;
+    border-bottom: 5px solid #8c3938;
 }
 .b-logo{
     float: left;
@@ -102,14 +100,18 @@ body{
     float: right;
 }
 .i-phone{
-    background: url("../images/beer-mug.svg") no-repeat center;
+    background: url("../images/phone-call.png") no-repeat center;
+    background-size: contain;
 }
 .i-map{
-    background: url("../images/next.svg") no-repeat center;
+    background: url("../images/next.png") no-repeat center;
+    background-size: contain;
 }
 .i-mail{
-    background: url("../images/envelope.svg") no-repeat center;
+    background: url("../images/envelope.png") no-repeat center;
+    background-size: contain;
 }
 .i-site{
-    background: url("../images/house.svg") no-repeat center;
+    background: url("../images/house.png") no-repeat center;
+    background-size: contain;
 }
