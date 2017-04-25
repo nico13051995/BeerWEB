@@ -14,7 +14,7 @@
 <body>
 <div id="info-header">
     <a href="${pageContext.request.contextPath}/">назад</a>
-    <span>${point.city}, ${point.name}</span>
+    <span>${point.address}, ${point.name}</span>
 </div>
 <div id="info-wrapper">
     <div id="img-wrapper">
@@ -42,7 +42,7 @@
     </div>
 </div>
 <div id="info-footer">
-    <button type="button" onclick="onclick=window.open('tel:+38096029-29-29');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
+    <button type="button" onclick="onclick=window.open('tel:+380960292929');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
     </button>
     <button type="button" onclick="my_road('${point}', '${userLocation}');" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
     <button type="button" onclick="onclick=window.open('mailto:info@umanpivo.ua');" class="info-btn"><span
@@ -53,7 +53,7 @@
 <script src="${root}resources/js/jquery.min.js"></script>
 <script src="${root}resources/js/common.js"></script>
 <script>
-    var adr = '${point.city}+${point.street}+${point.building}'.replace(/\s+/g, '+');
+    var adr = '${point.address}'.replace(/\s+/g, '+');
 //    var size = $('#img-wrapper').width() * 2 + 'x' + $('#img-wrapper').height() * 2;
 //    console.log(size);
     var src = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&q='+ adr +'';

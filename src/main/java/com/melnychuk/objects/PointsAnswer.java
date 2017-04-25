@@ -4,17 +4,17 @@ import com.melnychuk.entities.SalePoint;
 
 import java.util.List;
 
-public class PointsHelper
+public class PointsAnswer
 {
     private String userIp;
     private SalePoint userLocation;
     private List<SalePoint> salePoints;
 
-    public PointsHelper()
+    public PointsAnswer()
     {
     }
 
-    public PointsHelper(String userIp, SalePoint userLocation, List<SalePoint> salePoints)
+    public PointsAnswer(String userIp, SalePoint userLocation, List<SalePoint> salePoints)
     {
         this.userIp = userIp;
         this.userLocation = userLocation;

@@ -28,7 +28,7 @@
     </div>
 
     <div id="adm-containers">
-        <div id="item" class="adm-container">
+        <div id="item" class="adm-container" style="display: block">
             <form class="upload-form" action="${pageContext.request.contextPath}/uploadFIle" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                 <button type="submit" class="btn btn-success btn-upload"><i class="fa fa-upload" aria-hidden="true"></i></button>
                 <input required type="file" name="file" class="btn btn-upload" placeholder="Upload sheets"/>

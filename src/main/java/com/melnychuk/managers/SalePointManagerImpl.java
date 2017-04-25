@@ -43,9 +43,9 @@ public class SalePointManagerImpl implements SalePointManager
 
         for (SalePoint point : salePoints)
         {
-            LatLng latLng = makeGeocodeDataFromInfo(point.toString());
-            point.setLat(latLng.lat);
-            point.setLng(latLng.lng);
+//            LatLng latLng = makeGeocodeDataFromInfo(point.getAddress());
+//            point.setLat(latLng.lat);
+//            point.setLng(latLng.lng);
 
             double dlng = Math.toRadians(myPos.getLng() - point.getLng());
             double dlat = Math.toRadians(myPos.getLat() - point.getLat());
@@ -69,21 +69,6 @@ public class SalePointManagerImpl implements SalePointManager
         // Handle successful request.
 
         return results[0].geometry.location;
-
-        //        req.setCallback(new PendingResult.Callback<GeocodingResult[]>() {
-        //            @Override
-        //            public void onResult(GeocodingResult[] result) {
-        //                // Handle successful request.
-        //                System.out.println(Arrays.toString(result));
-        //                return new LatLng(0d, 0d);
-        //            }
-        //
-        //            @Override
-        //            public void onFailure(Throwable e) {
-        //                // Handle error.
-        //                return null;
-        //            }
-        //        });
     }
 
     @Override

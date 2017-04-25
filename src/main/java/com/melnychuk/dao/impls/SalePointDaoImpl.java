@@ -3,6 +3,7 @@ package com.melnychuk.dao.impls;
 import com.melnychuk.dao.interfaces.SalePointDao;
 import com.melnychuk.entities.SalePoint;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -43,5 +44,29 @@ public class SalePointDaoImpl implements SalePointDao
         criteria.add(Restrictions.eq("id", id));
 
         return (SalePoint) criteria.uniqueResult();
+    }
+
+    @Transactional
+    @Override
+    public SalePoint getPointByName(String name)
+    {
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SalePoint.class);
+        Criteria criteria = detachedCriteria.getExecutableCriteria(sessionFactory.getCurrentSession());
+        criteria.add(Restrictions.eq("name", name));
+
+//        Query query = sessionFactory.getCurrentSession().createQuery("from SalePoint where name=:name");
+//        query.setParameter("name", name);
+//
+//        SalePoint point = (SalePoint) query.uniqueResult();
+
+        return (SalePoint) criteria.uniqueResult();
+    }
+
+    @Transactional
+    @Override
+    public void save(SalePoint salePoint)
+    {
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.saveOrUpdate(salePoint);
     }
 }

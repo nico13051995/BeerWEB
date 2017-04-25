@@ -56,7 +56,7 @@ function addMarker(point) {
 }
 
 function addInfoWindow(marker, point) {
-    var adr = point.city + ', ' + point.street + ' №' + point.building;
+    var adr = point.address;
     var info = point.name + ', ' + Math.round(point.distance * 100) / 100 + 'км';
 
     var content = '<a id="info-link" href="info/' + point.id + '"><div id="info"><img id="info-logo" src="/resources/logo.png"><p id="info-text-head">' + info + '</p><p id = info-text-body>' + adr + '</p></div></a>';
@@ -118,7 +118,7 @@ function createListForPoints() {
 
 function createPoint(point) {
     //console.log(point);
-    var adr = point.city + ', ' + point.street + ' №' + point.building;
+    var adr = point.address;
     var info = point.name + '<br>' + Math.round(point.distance * 100) / 100;
     var elem = $('<div onclick="window.open(\'info/' + point.id + '\');" class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
 

@@ -7,7 +7,7 @@ import com.maxmind.geoip.Location;
 import com.maxmind.geoip.LookupService;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.managers.SalePointManager;
-import com.melnychuk.objects.PointsHelper;
+import com.melnychuk.objects.PointsAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +32,7 @@ public class ApiController
     @ResponseBody
     public String points(HttpServletRequest request, @PathVariable String coords) throws IOException, InterruptedException, ApiException
     {
-        PointsHelper helper = new PointsHelper();
+        PointsAnswer helper = new PointsAnswer();
 
         SalePoint myPos;
         if(coords.equals("null")) myPos = getMyPositionByIp(request);

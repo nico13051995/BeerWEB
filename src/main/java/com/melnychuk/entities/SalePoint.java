@@ -10,9 +10,7 @@ public class SalePoint
 {
     private int id;
     private String name;
-    private String city;
-    private String street;
-    private String building;
+    private String address;
     private double lng;
     private double lat;
     private double distance;
@@ -20,7 +18,14 @@ public class SalePoint
 
 
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    public SalePoint(String name, String address)
+    {
+        this.name = name;
+        this.address = address;
+    }
+
+    //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JoinTable(name = "sp_to_beer",
 //            joinColumns = { @JoinColumn(name = "point_id", nullable = false) },
 //            inverseJoinColumns = { @JoinColumn(name = "beer_id", nullable = false)})
@@ -51,39 +56,15 @@ public class SalePoint
     }
 
     @Basic
-    @Column(name = "city", nullable = false, length = 16)
-    public String getCity()
+    @Column(name = "address", nullable = false, length = 16)
+    public String getAddress()
     {
-        return city;
+        return address;
     }
 
-    public void setCity(String city)
+    public void setAddress(String city)
     {
-        this.city = city;
-    }
-
-    @Basic
-    @Column(name = "street", nullable = false, length = 32)
-    public String getStreet()
-    {
-        return street;
-    }
-
-    public void setStreet(String street)
-    {
-        this.street = street;
-    }
-
-    @Basic
-    @Column(name = "building", nullable = false, length = 16)
-    public String getBuilding()
-    {
-        return building;
-    }
-
-    public void setBuilding(String building)
-    {
-        this.building = building;
+        this.address = city;
     }
 
     @Basic
@@ -144,9 +125,7 @@ public class SalePoint
         if (Double.compare(point.lng, lng) != 0) return false;
         if (Double.compare(point.lat, lat) != 0) return false;
         if (name != null ? !name.equals(point.name) : point.name != null) return false;
-        if (city != null ? !city.equals(point.city) : point.city != null) return false;
-        if (street != null ? !street.equals(point.street) : point.street != null) return false;
-        if (building != null ? !building.equals(point.building) : point.building != null) return false;
+        if (address != null ? !address.equals(point.address) : point.address != null) return false;
 
         return true;
     }
@@ -158,9 +137,7 @@ public class SalePoint
         long temp;
         result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (street != null ? street.hashCode() : 0);
-        result = 31 * result + (building != null ? building.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         temp = Double.doubleToLongBits(lng);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(lat);
@@ -171,10 +148,7 @@ public class SalePoint
     @Override
     public String toString()
     {
-        String s = String.format("%s %s %s", city, street, building);
-        System.out.println(s);
-
-        return s;
+        return String.format("%s [%s]", name, address);
     }
 
     public SalePoint()
