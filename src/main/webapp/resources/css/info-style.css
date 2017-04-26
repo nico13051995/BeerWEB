@@ -80,7 +80,10 @@ body{
 .beer{
     height: 120px;
     padding: 10px 0;
-    border-bottom: 5px solid #8c3938;
+    border-bottom: 1px solid #8c3938;
+}
+.beer:last-child{
+    border: none;
 }
 .b-logo{
     float: left;
