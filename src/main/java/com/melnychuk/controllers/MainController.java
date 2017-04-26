@@ -2,7 +2,9 @@ package com.melnychuk.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.maps.errors.ApiException;
+import com.melnychuk.dao.interfaces.BeerDao;
 import com.melnychuk.dao.interfaces.SalePointDao;
+import com.melnychuk.entities.Beer;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.helpers.ExcelHelper;
 import com.melnychuk.managers.SalePointManager;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @Scope("session")
@@ -24,17 +27,19 @@ public class MainController
 {
     private final SalePointManager salePointManager;
     private final SalePointDao salePointDao;
+    private final BeerDao beerDao;
 
     private final ExcelHelper excelHelper;
     private final ObjectMapper mapper = new ObjectMapper();
 
 
     @Autowired
-    public MainController(SalePointDao salePointDao, SalePointManager salePointManager, ExcelHelper excelHelper)
+    public MainController(SalePointDao salePointDao, SalePointManager salePointManager, ExcelHelper excelHelper, BeerDao beerDao)
     {
         this.salePointDao = salePointDao;
         this.salePointManager = salePointManager;
         this.excelHelper = excelHelper;
+        this.beerDao = beerDao;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -66,6 +71,11 @@ public class MainController
     {
         ModelAndView model = new ModelAndView();
         model.setViewName("admin");
+
+        List<Beer> beers = beerDao.getBeers();
+        model.getModel().put("points", salePointDao.getSalePoints());
+        model.getModel().put("beers", beers);
+
         return model;
     }
 

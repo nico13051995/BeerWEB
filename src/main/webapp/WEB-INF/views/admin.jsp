@@ -29,73 +29,70 @@
 
     <div id="adm-containers">
         <div id="item" class="adm-container">
-            <h2>Sale points</h2>
-            <table id="users_table">
+            <h2>Точки продажу</h2>
+            <table class="users_table">
                 <tbody>
                 <tr>
-                    <th>Name</th>
-                    <th>Logo</th>
-                    <th>Phone</th>
-                    <th>Mail</th>
-                    <th>Site</th>
-                    <th>City</th>
-                    <th>Street</th>
-                    <th>Building</th>
+                    <th>Назва точки</th>
+                    <th>Адрес</th>
+                    <th>Кількість продукції</th>
                 </tr>
-                <%--<tr>--%>
-                <%--<td></td>--%>
-                <%--<td><input onclick="" type="checkbox"--%>
-                <%--checked/>--%>
-                <%--</td>--%>
-                <%--</tr>--%>
+
+                <c:forEach items="${points}" var="p">
+                    <tr>
+                        <td>${p.name}</td>
+                        <td>${p.address}</td>
+                        <td>${p.joins.size()}</td>
+                    </tr>
+                </c:forEach>
+
                 </tbody>
             </table>
         </div>
         <div id="event" class="adm-container">
-            <button class="btn btn-upload">Upload sheets</button>
-            <h2>Beers</h2>
-            <table id="users_table">
+            <h2>Продукція</h2>
+            <table class="users_table">
                 <tbody>
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Logo</th>
-
+                    <th>Назва</th>
+                    <th>Опис</th>
+                    <th>Логотип</th>
                 </tr>
-                <%--<tr>--%>
-                <%--<td></td>--%>
-                <%--<td><input onclick="" type="checkbox"--%>
-                <%--checked/>--%>
-                <%--</td>--%>
-                <%--</tr>--%>
+                <c:forEach items="${beers}" var="b">
+                    <tr>
+                        <td>${b.name}</td>
+                        <td>${b.description}</td>
+                        <td><img class="logo" src="${b.logo}"></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
-        <div id="promotions" class="adm-container">
-            <button class="btn btn-upload">Upload sheets</button>
-            <h2>Joins</h2>
-            <table id="users_table">
-                <tbody>
-                <tr>
-                    <th>Point Name</th>
-                    <th>Beer Name</th>
-                    <th>g33</th>
-                    <th>g05</th>
-                    <th>p1</th>
-                    <th>p1.5</th>
-                    <th>p2</th>
-                    <th>k30</th>
-                    <th>k50</th>
-                </tr>
+        <%--<div id="promotions" class="adm-container">--%>
+            <%--<button class="btn btn-upload">Upload sheets</button>--%>
+            <%--<h2>Joins</h2>--%>
+            <%--<table class="users_table">--%>
+                <%--<tbody>--%>
                 <%--<tr>--%>
-                <%--<td></td>--%>
-                <%--<td><input onclick="" type="checkbox"--%>
-                <%--checked/>--%>
-                <%--</td>--%>
+                    <%--<th>Point Name</th>--%>
+                    <%--<th>Beer Name</th>--%>
+                    <%--<th>g33</th>--%>
+                    <%--<th>g05</th>--%>
+                    <%--<th>p1</th>--%>
+                    <%--<th>p1.5</th>--%>
+                    <%--<th>p2</th>--%>
+                    <%--<th>k30</th>--%>
+                    <%--<th>k50</th>--%>
                 <%--</tr>--%>
-                </tbody>
-            </table>
-        </div>
+                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<td></td>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<td><input onclick="" type="checkbox"&ndash;%&gt;--%>
+                <%--&lt;%&ndash;checked/>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</td>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                <%--</tbody>--%>
+            <%--</table>--%>
+        <%--</div>--%>
         <div id="users" class="adm-container" style="display: block">
             <div class="container">
                 <div class="row">
@@ -156,6 +153,7 @@
 
 <script src="${contextPath}resources/js/jquery.min.js"></script>
 <script src="${contextPath}resources/js/bootstrap.min.js"></script>
+<script src="${contextPath}resources/js/common.js"></script>
 <script>
     $(document).ready(function () {
         $('#file:file').change(function () {

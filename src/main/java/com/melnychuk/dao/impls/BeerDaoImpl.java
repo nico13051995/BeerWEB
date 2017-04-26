@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Component
 public class BeerDaoImpl implements BeerDao
 {
@@ -19,6 +21,16 @@ public class BeerDaoImpl implements BeerDao
     public BeerDaoImpl(SessionFactory sessionFactory)
     {
         this.sessionFactory = sessionFactory;
+    }
+
+    @Transactional
+    @Override
+    public List<Beer> getBeers()
+    {
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Beer.class);
+        Criteria criteria = detachedCriteria.getExecutableCriteria(sessionFactory.getCurrentSession());
+
+        return criteria.list();
     }
 
     @Transactional

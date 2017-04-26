@@ -68,30 +68,34 @@
     height: 100%;
 }
 
-#users_table {
+.users_table {
     width: 70%;
     border-collapse: collapse;
     margin: 20px auto 0;
 }
 
-#users_table th, #users_table td {
+.users_table th, .users_table td {
     border: 1px solid #ddd;
 }
 
-#users_table tr:nth-child(even) {
+.users_table tr:nth-child(even) {
     background-color: white;
 }
 
-#users_table th {
+.users_table th {
     background-color: #4caf50;
     color: white;
     height: 50px;
     text-align: center;
 }
 
-#users_table td {
+.users_table td {
     height: 30px;
     padding: 10px;
+}
+.logo{
+    width: 36px;
+    height: auto;
 }
 
 #item h3{
