@@ -103,8 +103,12 @@ public class ExcelHelper
             Beer beer = beerDao.getBeerByName(result.getBeerName());
 
             Join join = createJoin(point.getId(), beer.getId(), result.getJoins());
+            join.setSalePoint(point);
+            join.setBeer(beer);
 
             point.getJoins().add(join);
+
+            salePointDao.save(point);
         }
 
         return points;

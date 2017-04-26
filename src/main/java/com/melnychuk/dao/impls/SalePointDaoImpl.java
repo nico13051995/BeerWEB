@@ -54,11 +54,6 @@ public class SalePointDaoImpl implements SalePointDao
         Criteria criteria = detachedCriteria.getExecutableCriteria(sessionFactory.getCurrentSession());
         criteria.add(Restrictions.eq("name", name));
 
-//        Query query = sessionFactory.getCurrentSession().createQuery("from SalePoint where name=:name");
-//        query.setParameter("name", name);
-//
-//        SalePoint point = (SalePoint) query.uniqueResult();
-
         return (SalePoint) criteria.uniqueResult();
     }
 
