@@ -89,4 +89,13 @@ public class MainController
 
         return jsonNode.toString();
     }
+
+    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
+    public ModelAndView login()
+    {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("loginPage");
+
+        return model;
+    }
 }

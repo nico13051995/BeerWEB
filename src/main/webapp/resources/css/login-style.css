@@ -1,0 +1,76 @@
+/*Login Page*/
+.tab-wrap {
+    color: black;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.nav-tabs > li {
+    width: 50%;
+    text-align: center;
+}
+
+.tab-content {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: -1px;
+}
+
+.form-group {
+    overflow: auto;
+    font-weight: bold;
+}
+
+#passStr {
+    font-weight: lighter;
+    float: right;
+}
+
+.weak {
+    color: red;
+}
+
+.middle {
+    color: darkorange;
+}
+
+.strong {
+    color: green;
+}
+
+#passMatch {
+
+}
+
+.social-icon {
+    float: right;
+}
+
+.social-icon li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.social-icon img {
+    width: 25px;
+    height: 25px;
+}
+
+.form-box button {
+    background: #ffc000;
+    border-radius: 2px;
+    border: none;
+    width: 100%;
+    color: #44311e;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.form-box .btn-form:hover, .form-box button:active, .form-box button:focus {
+    background: #ffd861;
+    border: none;
+    color: #714e2c;
+    outline: none !important;
+}
