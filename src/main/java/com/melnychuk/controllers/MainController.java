@@ -1,12 +1,12 @@
 package com.melnychuk.controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.maps.errors.ApiException;
 import com.melnychuk.dao.interfaces.SalePointDao;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.helpers.ExcelHelper;
 import com.melnychuk.managers.SalePointManager;
+import com.melnychuk.objects.UploadAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -71,23 +71,22 @@ public class MainController
 
     @RequestMapping(value = "/uploadFIle", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String uploadFile(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException, ApiException
+    public ModelAndView uploadFile(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException, ApiException
     {
-        String name = null;
+        ModelAndView model = new ModelAndView();
+        model.setViewName("admin");
 
         if(!file.isEmpty())
         {
-            name = file.getOriginalFilename();
+            File uploadedFile = new File(file.getOriginalFilename());
+            file.transferTo(uploadedFile);
+
+            UploadAnswer answer = excelHelper.readFromExcel(uploadedFile);
+
+            model.getModel().put("answer", answer);
         }
 
-        File uploadedFile = new File(file.getOriginalFilename());
-        file.transferTo(uploadedFile);
-
-        String results = excelHelper.readFromExcel(uploadedFile);
-
-        JsonNode jsonNode = mapper.readTree(mapper.writeValueAsString(results));
-
-        return jsonNode.toString();
+        return model;
     }
 
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)

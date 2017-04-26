@@ -17,23 +17,18 @@
 
 <div id="wrapper">
     <div class="adm-head">
-        <a href="${pageContext.request.contextPath}/">Beer Map</a>
+        <a href="${pageContext.request.contextPath}/">Адмін панель</a>
 
     </div>
     <div class="adm-left-sidebar">
-        <button onclick="openAdmTab('item')" class="adm-tab">Sale Points</button>
-        <button onclick="openAdmTab('event')" class="adm-tab">Beers</button>
-        <button onclick="openAdmTab('promotions')" class="adm-tab">Joins</button>
-        <button onclick="openAdmTab('users')" class="adm-tab">Options</button>
+        <button onclick="openAdmTab('item')" class="adm-tab">Точки продаж</button>
+        <button onclick="openAdmTab('event')" class="adm-tab">Продукція</button>
+        <%--<button onclick="openAdmTab('promotions')" class="adm-tab">Joins</button>--%>
+        <button onclick="openAdmTab('users')" class="adm-tab">Загрузки</button>
     </div>
 
     <div id="adm-containers">
-        <div id="item" class="adm-container" style="display: block">
-            <form class="upload-form" action="${pageContext.request.contextPath}/uploadFIle" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-                <button type="submit" class="btn btn-success btn-upload"><i class="fa fa-upload" aria-hidden="true"></i></button>
-                <input required type="file" name="file" class="btn btn-upload" placeholder="Upload sheets"/>
-            </form>
-
+        <div id="item" class="adm-container">
             <h2>Sale points</h2>
             <table id="users_table">
                 <tbody>
@@ -101,15 +96,78 @@
                 </tbody>
             </table>
         </div>
-        <div id="users" class="adm-container">
+        <div id="users" class="adm-container" style="display: block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2>Точки</h2>
+                        <form class="upload-form" action="${pageContext.request.contextPath}/uploadFIle" method="post"
+                              enctype="multipart/form-data" accept-charset="UTF-8">
+                            <div class="form-group">
+                                <label id="filelabel" for="file" class="btn btn-default btn-file">
+                                    Вибрати файл&hellip;
+                                </label>
+                                <input id="file" required type="file" name="file" class="btn btn-upload"
+                                       style="display: none"/>
 
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-upload"><i class="fa fa-upload"
+                                                                                            aria-hidden="true">
+                                    Завантажити</i>
+                                </button>
+                            </div>
+
+                            <c:if test="${not empty answer}">
+                                <div id="points" class="result-list">
+                                    <div class="new">
+                                        <h3>Нові точки:</h3>
+                                        <ul class="result-new">
+                                            <c:forEach items="${answer.newPoints}" var="np">
+                                                <li>${np.name}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                    <div class="updated">
+                                        <h3>Обновленні точки:</h3>
+                                        <ul class="result-updated">
+                                            <c:forEach items="${answer.updatedPoints}" var="up">
+                                                <li>${up.name}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </c:if>
+
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <h2>Продукція</h2>
+                        <%--<form class="upload-form" action="${pageContext.request.contextPath}/uploadFIle" method="post" enctype="multipart/form-data" accept-charset="UTF-8">--%>
+                        <%--<button type="submit" class="btn btn-success btn-upload"><i class="fa fa-upload" aria-hidden="true"></i></button>--%>
+                        <%--<input required type="file" name="file" class="btn btn-upload" placeholder="Upload sheets"/>--%>
+                        <%--</form>--%>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script src="${contextPath}resources/js/jquery.min.js"></script>
 <script src="${contextPath}resources/js/bootstrap.min.js"></script>
-<script src="${contextPath}resources/js/notify.js"></script>
-<script src="${contextPath}resources/js/common.js"></script>
-</body>
+<script>
+    $(document).ready(function () {
+        $('#file:file').change(function () {
+            var fileName = $(this).val();
+            fileName = fileName.split('\\');
+            fileName = fileName[fileName.length - 1];
+//            alert(fileName);
+            console.log(fileName === '');
+            if (fileName === '') fileName = 'Файл не вибрано';
+
+            $('#filelabel').text(fileName);
+        });
+    });
+</script>
 </html>

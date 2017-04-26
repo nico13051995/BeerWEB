@@ -10,6 +10,7 @@ import com.melnychuk.entities.Join;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.managers.SalePointManager;
 import com.melnychuk.objects.ExcelParseResult;
+import com.melnychuk.objects.UploadAnswer;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -37,13 +38,13 @@ public class ExcelHelper
         this.pointManager = pointManager;
     }
 
-    public String readFromExcel(File file) throws IOException, ApiException, InterruptedException
+    public UploadAnswer readFromExcel(File file) throws IOException, ApiException, InterruptedException
     {
         List<ExcelParseResult> results = parseFile(file);
 
-        Set<SalePoint> points = prepareToInsert(results);
+        UploadAnswer answer = prepareToInsert(results);
 
-        return Arrays.toString(points.toArray());
+        return answer;
     }
 
     private List<ExcelParseResult> parseFile(File file) throws IOException
@@ -77,8 +78,9 @@ public class ExcelHelper
         return results;
     }
 
-    private Set<SalePoint> prepareToInsert(List<ExcelParseResult> results) throws InterruptedException, ApiException, IOException
+    private UploadAnswer prepareToInsert(List<ExcelParseResult> results) throws InterruptedException, ApiException, IOException
     {
+        UploadAnswer uploadAnswer = new UploadAnswer();
         Set<SalePoint> points = new HashSet<SalePoint>(results.size() / 2);
 
         SalePoint point = null;
@@ -96,7 +98,9 @@ public class ExcelHelper
                 salePointDao.save(newPoint);
 
                 point = salePointDao.getPointByName(result.getPoint().getName());
+                uploadAnswer.addNew(point);
             }
+            else uploadAnswer.addUpdated(point);
 
             points.add(point);
 
@@ -111,7 +115,7 @@ public class ExcelHelper
             salePointDao.save(point);
         }
 
-        return points;
+        return uploadAnswer;
     }
 
     private Join createJoin(int pointID, int beerID, boolean[] joins)
