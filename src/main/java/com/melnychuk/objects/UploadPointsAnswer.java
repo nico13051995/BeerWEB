@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class UploadAnswer
+public class UploadPointsAnswer
 {
     private Set<SalePoint> newPoints = new HashSet<SalePoint>();
     private Set<SalePoint> updatedPoints = new HashSet<SalePoint>();

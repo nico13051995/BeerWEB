@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <h2>Точки</h2>
-                        <form class="upload-form" action="${pageContext.request.contextPath}/uploadFIle" method="post"
+                        <form class="upload-form" action="${pageContext.request.contextPath}/uploadPoints" method="post"
                               enctype="multipart/form-data" accept-charset="UTF-8">
                             <div class="form-group">
                                 <label id="filelabel" for="file" class="btn btn-default btn-file">

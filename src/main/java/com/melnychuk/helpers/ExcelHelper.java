@@ -9,8 +9,9 @@ import com.melnychuk.entities.Beer;
 import com.melnychuk.entities.Join;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.managers.SalePointManager;
-import com.melnychuk.objects.ExcelParseResult;
-import com.melnychuk.objects.UploadAnswer;
+import com.melnychuk.objects.ExcelParseResultForPoints;
+import com.melnychuk.objects.UploadBeersAnswer;
+import com.melnychuk.objects.UploadPointsAnswer;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -20,7 +21,10 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Component
 public class ExcelHelper
@@ -38,18 +42,18 @@ public class ExcelHelper
         this.pointManager = pointManager;
     }
 
-    public UploadAnswer readFromExcel(File file) throws IOException, ApiException, InterruptedException
+    public UploadPointsAnswer readPointsFromExcel(File file) throws IOException, ApiException, InterruptedException
     {
-        List<ExcelParseResult> results = parseFile(file);
+        List<ExcelParseResultForPoints> results = parseFile(file);
 
-        UploadAnswer answer = prepareToInsert(results);
+        UploadPointsAnswer answer = prepareToInsert(results);
 
         return answer;
     }
 
-    private List<ExcelParseResult> parseFile(File file) throws IOException
+    private List<ExcelParseResultForPoints> parseFile(File file) throws IOException
     {
-        List<ExcelParseResult> results = new ArrayList<ExcelParseResult>();
+        List<ExcelParseResultForPoints> results = new ArrayList<ExcelParseResultForPoints>();
 
         XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
         XSSFSheet sheet = workbook.getSheetAt(0);
@@ -72,19 +76,19 @@ public class ExcelHelper
                 joins[j] = value.equals("+");
             }
 
-            results.add(new ExcelParseResult(sp, beerName, joins));
+            results.add(new ExcelParseResultForPoints(sp, beerName, joins));
         }
 
         return results;
     }
 
-    private UploadAnswer prepareToInsert(List<ExcelParseResult> results) throws InterruptedException, ApiException, IOException
+    private UploadPointsAnswer prepareToInsert(List<ExcelParseResultForPoints> results) throws InterruptedException, ApiException, IOException
     {
-        UploadAnswer uploadAnswer = new UploadAnswer();
+        UploadPointsAnswer uploadPointsAnswer = new UploadPointsAnswer();
         Set<SalePoint> points = new HashSet<SalePoint>(results.size() / 2);
 
         SalePoint point = null;
-        for (ExcelParseResult result : results)
+        for (ExcelParseResultForPoints result : results)
         {
             point = salePointDao.getPointByName(result.getPoint().getName());
             if (point == null)
@@ -98,9 +102,9 @@ public class ExcelHelper
                 salePointDao.save(newPoint);
 
                 point = salePointDao.getPointByName(result.getPoint().getName());
-                uploadAnswer.addNew(point);
+                uploadPointsAnswer.addNew(point);
             }
-            else uploadAnswer.addUpdated(point);
+            else uploadPointsAnswer.addUpdated(point);
 
             points.add(point);
 
@@ -115,7 +119,7 @@ public class ExcelHelper
             salePointDao.save(point);
         }
 
-        return uploadAnswer;
+        return uploadPointsAnswer;
     }
 
     private Join createJoin(int pointID, int beerID, boolean[] joins)
@@ -133,5 +137,47 @@ public class ExcelHelper
         join.setK50(joins[6]);
 
         return join;
+    }
+
+
+    public UploadBeersAnswer readBeersFromExcel(File file) throws IOException
+    {
+        UploadBeersAnswer beersAnswer = parseBeerExcel(file);
+
+        return beersAnswer;
+    }
+
+    private UploadBeersAnswer parseBeerExcel(File file) throws IOException
+    {
+        UploadBeersAnswer beersAnswer = new UploadBeersAnswer();
+
+        XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
+        XSSFSheet sheet = workbook.getSheetAt(0);
+
+        for (int i = 1; i < sheet.getLastRowNum() + 1; i++)
+        {
+            XSSFRow row = sheet.getRow(i);
+
+            Beer beer = null;
+            beer = beerDao.getBeerByName(row.getCell(0).getStringCellValue());
+            if(beer != null)
+            {
+                //add to updated
+                beersAnswer.addUpdated(beer);
+            }
+            else {
+                //add to new
+                beer = new Beer();
+                beer.setName(row.getCell(0).getStringCellValue());
+                beer.setDescription(row.getCell(1).getStringCellValue());
+                beer.setLogo(row.getCell(2).getStringCellValue());
+
+                beersAnswer.addNew(beer);
+            }
+
+            beerDao.save(beer);
+        }
+
+        return beersAnswer;
     }
 }

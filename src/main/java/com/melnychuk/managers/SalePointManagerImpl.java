@@ -53,6 +53,8 @@ public class SalePointManagerImpl implements SalePointManager
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
             point.setDistance(c * EARTH_RADIUS);
+
+            if(point.getDistance() > 50) salePoints.remove(point);
         }
 
         return salePoints;

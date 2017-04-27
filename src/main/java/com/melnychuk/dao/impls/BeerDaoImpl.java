@@ -3,6 +3,7 @@ package com.melnychuk.dao.impls;
 import com.melnychuk.dao.interfaces.BeerDao;
 import com.melnychuk.entities.Beer;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -42,5 +43,12 @@ public class BeerDaoImpl implements BeerDao
         criteria.add(Restrictions.eq("name", name));
 
         return (Beer) criteria.uniqueResult();
+    }
+
+    @Override
+    public void save(Beer beer)
+    {
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.saveOrUpdate(beer);
     }
 }

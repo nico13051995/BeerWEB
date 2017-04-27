@@ -8,13 +8,17 @@ import com.melnychuk.entities.Beer;
 import com.melnychuk.entities.SalePoint;
 import com.melnychuk.helpers.ExcelHelper;
 import com.melnychuk.managers.SalePointManager;
-import com.melnychuk.objects.UploadAnswer;
+import com.melnychuk.objects.UploadBeersAnswer;
+import com.melnychuk.objects.UploadPointsAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -79,9 +83,18 @@ public class MainController
         return model;
     }
 
-    @RequestMapping(value = "/uploadFIle", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
+    public ModelAndView login()
+    {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("loginPage");
+
+        return model;
+    }
+
+    @RequestMapping(value = "/uploadPoints", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
-    public ModelAndView uploadFile(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException, ApiException
+    public ModelAndView uploadPoints(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException, ApiException
     {
         ModelAndView model = new ModelAndView();
         model.setViewName("admin");
@@ -91,7 +104,7 @@ public class MainController
             File uploadedFile = new File(file.getOriginalFilename());
             file.transferTo(uploadedFile);
 
-            UploadAnswer answer = excelHelper.readFromExcel(uploadedFile);
+            UploadPointsAnswer answer = excelHelper.readPointsFromExcel(uploadedFile);
 
             model.getModel().put("answer", answer);
         }
@@ -99,11 +112,25 @@ public class MainController
         return model;
     }
 
-    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-    public ModelAndView login()
+    @RequestMapping(value = "/uploadBeers", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public ModelAndView uploadBeers(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) throws IOException, InterruptedException, ApiException
     {
         ModelAndView model = new ModelAndView();
-        model.setViewName("loginPage");
+
+        if(!file.isEmpty())
+        {
+            RedirectView redirectView = new RedirectView("admin");
+            redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+            model.setView(redirectView);
+
+            File uploadedFile = new File(file.getOriginalFilename());
+            file.transferTo(uploadedFile);
+
+            UploadBeersAnswer answer = excelHelper.readBeersFromExcel(uploadedFile);
+
+            attributes.addFlashAttribute("beerAnswer", answer);
+        }
 
         return model;
     }

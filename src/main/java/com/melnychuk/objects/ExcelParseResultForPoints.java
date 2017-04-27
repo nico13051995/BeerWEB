@@ -2,13 +2,13 @@ package com.melnychuk.objects;
 
 import com.melnychuk.entities.SalePoint;
 
-public class ExcelParseResult
+public class ExcelParseResultForPoints
 {
     private SalePoint point;
     private String beerName;
     private boolean[] joins;
 
-    public ExcelParseResult(SalePoint point, String beerName, boolean[] joins)
+    public ExcelParseResultForPoints(SalePoint point, String beerName, boolean[] joins)
     {
         this.point = point;
         this.beerName = beerName;

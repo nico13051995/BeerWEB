@@ -9,4 +9,6 @@ public interface BeerDao
     List<Beer> getBeers();
 
     Beer getBeerByName(String name);
+
+    void save(Beer beer);
 }
