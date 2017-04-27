@@ -44,16 +44,22 @@
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
+        alert('try to find location');
         navigator.geolocation.getCurrentPosition(function (position) {
+
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+            alert('HTML5 geo - '+ pos);
+
 //            console.log(pos);
             getPoints(pos);
 
             map.setCenter(pos);
         }, function () {
+            alert('HTML5 doesn`t support, try over ip');
+
             getPoints(undefined);
 //                    handleLocationError(true, infoWindow, map.getCenter());
         }, {
