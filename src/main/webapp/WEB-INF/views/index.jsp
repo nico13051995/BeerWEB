@@ -51,7 +51,7 @@
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            alert('HTML5 geo - '+ pos);
+            alert('HTML5 geo: '+ pos.lat + ' - ' + pos.lng);
 
 //            console.log(pos);
             getPoints(pos);
