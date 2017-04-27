@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -41,20 +42,23 @@ public class SalePointManagerImpl implements SalePointManager
         salePoints = salePointDao.getSalePoints();
         userLocation = String.format("%s,%s", myPos.getLat(), myPos.getLng());
 
-        for (SalePoint point : salePoints)
+        Iterator<SalePoint> iterator = salePoints.iterator();
+
+        while (iterator.hasNext())
         {
-//            LatLng latLng = makeGeocodeDataFromInfo(point.getAddress());
-//            point.setLat(latLng.lat);
-//            point.setLng(latLng.lng);
+            SalePoint point = iterator.next();
 
             double dlng = Math.toRadians(myPos.getLng() - point.getLng());
             double dlat = Math.toRadians(myPos.getLat() - point.getLat());
             double a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(Math.toRadians(point.getLat())) * Math.cos(Math.toRadians(myPos.getLat())) * Math.sin(dlng / 2) * Math.sin(dlng / 2);
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-            point.setDistance(c * EARTH_RADIUS);
+            double dist = c * EARTH_RADIUS;
 
-            if(point.getDistance() > 50) salePoints.remove(point);
+            point.setDistance(dist);
+
+            if(point.getDistance() > 50D)
+                iterator.remove();
         }
 
         return salePoints;
