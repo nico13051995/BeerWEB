@@ -44,7 +44,7 @@
 <div id="info-footer">
     <button type="button" onclick="onclick=window.open('tel:+380960292929');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
     </button>
-    <button type="button" onclick="my_road('${point}', '${userLocation}');" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
+    <button type="button" onclick="my_road('${point.address}', '${userLocation}');" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
     <button type="button" onclick="onclick=window.open('mailto:info@umanpivo.ua');" class="info-btn"><span
             class="info-icon i-mail"></span><span>Пошта</span></button>
     <button type="button" onclick="window.open('http://umanpivo.ua/');" class="info-btn"><span class="info-icon i-site"></span><span>Сайт</span></button>
@@ -54,10 +54,8 @@
 <script src="${root}resources/js/common.js"></script>
 <script>
     var adr = '${point.address}'.replace(/\s+/g, '+');
-//    var size = $('#img-wrapper').width() * 2 + 'x' + $('#img-wrapper').height() * 2;
-//    console.log(size);
+    var up = myPos.replace(/\s+/g, '+');
     var src = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&q='+ adr +'';
-//    var url = 'https://maps.googleapis.com/maps/api/staticmap?autoscale=2&size='+ size +'&zoom=17&maptype=roadmap&key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C'+adr+'';
     $('#map-frame').attr("src", src);
 //    console.log(src);
 </script>

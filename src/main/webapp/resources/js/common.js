@@ -135,11 +135,11 @@ function openAdmTab(admTab) {
 }
 
 function my_road(p, u) {
-    // console.log(u);
-    // var adr = curPoint.city + ', ' + curPoint.street + ' №' + curPoint.building;
+    var adr = p.replace(/\s+/g, '+');
+    var up = u.replace(/\s+/g, '+');
 
     var src = 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAUx8OFmTxpyDvCS-r4RQPAX6BLQDXKd8o&origin='+ u +'&destination='+ p +'&avoid=tolls|highways';
-    // $('#map-frame').attr("src", src);
-    window.open(src);
+    var url = 'https://www.google.com/maps/dir/'+ up +'/'+ adr +'';
+    window.open(url);
 
 }
