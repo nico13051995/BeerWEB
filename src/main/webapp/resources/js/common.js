@@ -95,7 +95,7 @@ function openTab(evt, tabName) {
 }
 
 function handleAndroidError() {
-    alert('Ip pos: ' + myPos.lat +' - '+ myPos.lng);
+    // alert('Ip pos: ' + myPos.lat +' - '+ myPos.lng);
     map.setCenter(new google.maps.LatLng(myPos.lat, myPos.lng));
 }
 
