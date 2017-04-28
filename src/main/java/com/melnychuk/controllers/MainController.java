@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Scope("session")
@@ -80,6 +82,12 @@ public class MainController
         model.getModel().put("points", salePointDao.getSalePoints());
         model.getModel().put("beers", beers);
 
+        Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
+        if(map != null){
+            model.getModel().put("answerBeer", map.get("beerAnswer"));
+            model.getModel().put("answerPoint", map.get("pointAnswer"));
+        }
+
         return model;
     }
 
@@ -97,16 +105,19 @@ public class MainController
     public ModelAndView uploadPoints(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException, ApiException
     {
         ModelAndView model = new ModelAndView();
-        model.setViewName("admin");
 
         if(!file.isEmpty())
         {
+            RedirectView redirectView = new RedirectView("admin");
+            redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+            model.setView(redirectView);
+
             File uploadedFile = new File(file.getOriginalFilename());
             file.transferTo(uploadedFile);
 
             UploadPointsAnswer answer = excelHelper.readPointsFromExcel(uploadedFile);
 
-            model.getModel().put("answer", answer);
+            model.getModel().put("pointAnswer", answer);
         }
 
         return model;

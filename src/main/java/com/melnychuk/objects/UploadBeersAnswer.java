@@ -7,26 +7,26 @@ import java.util.Set;
 
 public class UploadBeersAnswer
 {
-    private Set<Beer> newPoints = new HashSet<Beer>();
-    private Set<Beer> updatedPoints = new HashSet<Beer>();
+    private Set<Beer> newBeers = new HashSet<Beer>();
+    private Set<Beer> updatedBeers = new HashSet<Beer>();
 
     public void addNew(Beer beer)
     {
-        newPoints.add(beer);
+        newBeers.add(beer);
     }
 
     public void addUpdated(Beer beer)
     {
-        updatedPoints.add(beer);
+        updatedBeers.add(beer);
     }
 
-    public Set<Beer> getNewPoints()
+    public Set<Beer> getNewBeers()
     {
-        return newPoints;
+        return newBeers;
     }
 
-    public Set<Beer> getUpdatedPoints()
+    public Set<Beer> getUpdatedBeers()
     {
-        return updatedPoints;
+        return updatedBeers;
     }
 }

@@ -43,16 +43,11 @@
 </div>
 <div id="info-footer">
 
-
         <a class="info-btn" href="tel:+380960292929"><span class="info-icon i-phone"></span><span>Подзвонити</span></a>
         <a id="a-map"  class="info-btn" ><span class="info-icon i-map"></span><span>Доїхати</span></a>
         <a class="info-btn" href="mailto:info@umanpivo.ua"><span class="info-icon i-mail"></span><span>Пошта</span></a>
         <a class="info-btn" href="http://umanpivo.ua/"><span class="info-icon i-site"></span><span>Сайт</span></a>
 
-        <%--<button type="button" onclick="" class="info-btn"><span class="info-icon "></span><span></span></button>--%>
-    <%--<button type="button" onclick="window.open('');" class="info-btn"><span--%>
-            <%--class="info-icon i-mail"></span><span>Пошта</span></button>--%>
-    <%--<button type="button" onclick="window.open('');" class="info-btn"><span class="info-icon i-site"></span><span>Сайт</span></button>--%>
 </div>
 
 <script src="${root}resources/js/jquery.min.js"></script>

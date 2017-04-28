@@ -45,6 +45,7 @@ public class BeerDaoImpl implements BeerDao
         return (Beer) criteria.uniqueResult();
     }
 
+    @Transactional
     @Override
     public void save(Beer beer)
     {
