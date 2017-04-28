@@ -59,6 +59,9 @@ body{
     background: none;
     border: none;
     color: white;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
 }
 #product-wrapper{
     background-color: #c2827e;
