@@ -42,8 +42,9 @@
     </div>
 </div>
 <div id="info-footer">
-    <button type="button" onclick="window.open('tel:+380960292929');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити
-    </button>
+    <%--<button type="button" onclick="window.open('tel:+380960292929');" class="info-btn"><span class="info-icon i-phone"></span>Подзвонити--%>
+    <%--</button>--%>
+        <a class="info-btn" href="tel:+380960292929"><span class="info-icon i-phone"></span>Подзвонити</a>
     <button type="button" onclick="my_road('${point.address}', '${userLocation}');" class="info-btn"><span class="info-icon i-map"></span><span>Доїхати</span></button>
     <button type="button" onclick="window.open('mailto:info@umanpivo.ua');" class="info-btn"><span
             class="info-icon i-mail"></span><span>Пошта</span></button>
