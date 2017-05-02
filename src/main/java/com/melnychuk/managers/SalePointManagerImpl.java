@@ -57,8 +57,8 @@ public class SalePointManagerImpl implements SalePointManager
 
             point.setDistance(dist);
 
-//            if(point.getDistance() > 50D)
-//                iterator.remove();
+            if(point.getDistance() > 50D)
+                iterator.remove();
         }
 
         return salePoints;

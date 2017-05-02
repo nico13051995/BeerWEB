@@ -24,10 +24,15 @@ body{
 #info-header span{
     padding-top: 1vh;
     text-align: right;
-    display: block;
     font-size: 3vh;
     line-height: 8vh;
     padding-right: 4vh;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 60%;
+    display: inline-block;
+    float: right;
 }
 #info-wrapper{
     height: 80vh;

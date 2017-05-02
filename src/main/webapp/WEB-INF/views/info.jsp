@@ -14,7 +14,7 @@
 <body>
 <div id="info-header">
     <a href="${pageContext.request.contextPath}/">назад</a>
-    <span>${point.address}, ${point.name}</span>
+    <span>${point.name}</span>
 </div>
 <div id="info-wrapper">
     <div id="img-wrapper">
@@ -46,7 +46,7 @@
         <a class="info-btn" href="tel:+380960292929"><span class="info-icon i-phone"></span><span>Подзвонити</span></a>
         <a id="a-map"  class="info-btn" ><span class="info-icon i-map"></span><span>Доїхати</span></a>
         <a class="info-btn" href="mailto:info@umanpivo.ua"><span class="info-icon i-mail"></span><span>Пошта</span></a>
-        <a class="info-btn" href="http://umanpivo.ua/"><span class="info-icon i-site"></span><span>Сайт</span></a>
+        <a class="info-btn" href="http://umanpivo.ua/ua"><span class="info-icon i-site"></span><span>Сайт</span></a>
 
 </div>
 
