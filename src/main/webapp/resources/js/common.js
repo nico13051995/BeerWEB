@@ -44,6 +44,8 @@ function getPoints(coords) {
                 icon: im
             });
 
+            alert(userMarker.position);
+
 
             if (coords === null) {
                 handleAndroidError();
