@@ -37,7 +37,14 @@ function getPoints(coords) {
             }
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
-            // alert(myPos);
+            var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+            var userMarker = new google.maps.Marker({
+                position: myPos,
+                map: map,
+                icon: im
+            });
+
+
             if (coords === null) {
                 handleAndroidError();
             }
