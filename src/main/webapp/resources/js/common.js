@@ -144,7 +144,7 @@ function createPoint(point) {
 
 
     var info = point.name + '<br>' + Math.round(point.distance * 100) / 100;
-    var elem = $('<a href="info/' + point.id + '"><div class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
+    var elem = $('<a class="p-wrap" href="info/' + point.id + '"><div class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
 
     return elem;
 }
