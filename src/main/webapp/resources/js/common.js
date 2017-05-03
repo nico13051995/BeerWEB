@@ -37,15 +37,22 @@ function getPoints(coords) {
             }
 
             myPos = {lat: jsonData.userLocation.lat, lng: jsonData.userLocation.lng};
-            var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+
+            var icon = {
+                url: 'https://www.sakai-ikimono.jp/design/img/map/pin-drag.png', // url
+                scaledSize: new google.maps.Size(32, 48), // scaled size
+                origin: new google.maps.Point(0,0), // origin
+                anchor: new google.maps.Point(0,0) // anchor
+            };
+
             var userMarker = new google.maps.Marker({
                 position: myPos,
                 map: map,
-                icon: im
+                icon: icon,
+                animation: google.maps.Animation.BOUNCE
             });
 
-            alert(userMarker.position);
-
+            // alert(userMarker.position);
 
             if (coords === null) {
                 handleAndroidError();
