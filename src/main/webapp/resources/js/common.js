@@ -41,8 +41,8 @@ function getPoints(coords) {
             var icon = {
                 url: 'https://www.sakai-ikimono.jp/design/img/map/pin-drag.png', // url
                 scaledSize: new google.maps.Size(32, 48), // scaled size
-                origin: new google.maps.Point(0,0), // origin
-                anchor: new google.maps.Point(0,0) // anchor
+                origin: new google.maps.Point(0, 0), // origin
+                anchor: new google.maps.Point(0, 0) // anchor
             };
 
             var userMarker = new google.maps.Marker({
@@ -128,7 +128,11 @@ function createListForPoints() {
     });
 
     for (var i = 0; i < salePoints.length; i++) {
-        $('#products').append(createPoint(salePoints[i]));
+        var point = createPoint(salePoints[i]);
+        $('#products').append(point);
+        if (i % 2 === 0) {
+            point.find('.point').css('background-color', '#b87371');
+        }
     }
 }
 
@@ -144,7 +148,7 @@ function createPoint(point) {
 
 
     var info = point.name + '<br>' + Math.round(point.distance * 100) / 100;
-    var elem = $('<a class="p-wrap" href="info/' + point.id + '"><div class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
+    var elem = $('<a href="info/' + point.id + '"><div class="point"><img class="p-logo"><p class="p-address">' + adr + '</p><span class="p-info">' + info + ' км</span><span class="p-arrow"> > </span></div></a>');
 
     return elem;
 }
@@ -161,7 +165,7 @@ function openAdmTab(admTab) {
 function my_road(p, u) {
     var adr = p.replace(/\s+/g, '+');
     var up = u.replace(/\s+/g, '+');
-    var url = 'https://www.google.com/maps/dir/'+ up +'/'+ adr +'';
+    var url = 'https://www.google.com/maps/dir/' + up + '/' + adr + '';
 
     $('#a-map').attr("href", url);
 }

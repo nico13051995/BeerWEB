@@ -6,7 +6,7 @@
     <title>Beer Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <c:set var="contextPath" scope="request" value="${pageContext.request.contextPath}" />
+    <c:set var="contextPath" scope="request" value="${pageContext.request.contextPath}"/>
 
     <link rel="stylesheet" href="${contextPath}resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="${contextPath}resources/css/font-awesome.min.css">
@@ -34,9 +34,9 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
-        map.addListener("click", function() {
+        map.addListener("click", function () {
             console.log(windows);
-            for (var i = 0; i < windows.length; i++ ) {
+            for (var i = 0; i < windows.length; i++) {
                 windows[i].close();
             }
         });

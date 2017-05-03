@@ -124,9 +124,6 @@ html, body {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-#products a .point:nth-child(odd){
-    background: #b87371;
-}
 .point::after{
     content: '>';
     position: absolute;
