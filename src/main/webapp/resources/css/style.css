@@ -121,6 +121,9 @@ html, body {
     position: relative;
     clear: both;
     transition: 1s;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .point:nth-child(odd){
     background: #b87371;
