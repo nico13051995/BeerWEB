@@ -36,6 +36,15 @@
                     <img class="b-logo" src="${join.beer.logo}" alt="${join.beer.name}">
                     <p class="b-name">${join.beer.name}</p>
                     <p class="b-info">${join.beer.description}</p>
+                    <div class="packaging">
+                        <c:if test="${join.g33}"><span class="pack g33"></span></c:if>
+                        <c:if test="${join.g05}"><span class="pack g05"></span></c:if>
+                        <c:if test="${join.p1}"><span class="pack p1"></span></c:if>
+                        <c:if test="${join.p15}"><span class="pack p15"></span></c:if>
+                        <c:if test="${join.p2}"><span class="pack p2"></span></c:if>
+                        <c:if test="${join.k30}"><span class="pack k30"></span></c:if>
+                        <c:if test="${join.k50}"><span class="pack k50"></span></c:if>
+                    </div>
                 </div>
             </c:forEach>
         </div>

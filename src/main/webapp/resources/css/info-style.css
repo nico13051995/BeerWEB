@@ -102,6 +102,7 @@ body{
 }
 .b-name{
     font-weight: bold;
+    margin-top: 0;
 }
 .b-info{
     font-style: italic;
@@ -125,4 +126,68 @@ body{
 .i-site{
     background: url("../images/house.png") no-repeat center;
     background-size: contain;
+}
+/*Packaging*/
+.packaging{
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.pack{
+    width: 32px;
+    height: 32px;
+    background: url("../images/barrel.svg");
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+.pack::after{
+    content: '.';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.k50{
+    background: url("../images/barrel.svg");
+}
+.k50::after{
+    content: '50';
+}
+.k30{
+    background: url("../images/barrel.svg");
+}
+.k30::after{
+    content: '30';
+}
+.p2{
+    background: url("../images/beer.svg");
+}
+.p2::after{
+    content: '2';
+}
+.p15{
+    background: url("../images/beer.svg");
+}
+.p15::after{
+    content: '1.5';
+}
+.p1{
+    background: url("../images/beer.svg");
+}
+.p1::after{
+    content: '1';
+}
+.g05{
+    background: url("../images/beer-mug.svg");
+}
+.g05::after{
+    content: '0.5';
+}
+.g33{
+    background: url("../images/beer-mug.svg");
+}
+.g33::after{
+    content: '0.33';
 }

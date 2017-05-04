@@ -123,7 +123,6 @@ function createListForPoints() {
         if (a.distance < b.distance) {
             return -1;
         }
-        // a должно быть равным b
         return 0;
     });
 
