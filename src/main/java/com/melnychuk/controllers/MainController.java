@@ -102,7 +102,7 @@ public class MainController
 
     @RequestMapping(value = "/uploadPoints", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
-    public ModelAndView uploadPoints(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException, ApiException
+    public ModelAndView uploadPoints(@RequestParam("file") MultipartFile file, RedirectAttributes attributes) throws IOException, InterruptedException, ApiException
     {
         ModelAndView model = new ModelAndView();
 
@@ -117,7 +117,8 @@ public class MainController
 
             UploadPointsAnswer answer = excelHelper.readPointsFromExcel(uploadedFile);
 
-            model.getModel().put("pointAnswer", answer);
+            attributes.addFlashAttribute("pointAnswer", answer);
+
         }
 
         return model;
