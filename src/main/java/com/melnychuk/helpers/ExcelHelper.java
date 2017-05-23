@@ -103,18 +103,24 @@ public class ExcelHelper
 
                 point = salePointDao.getPointByName(result.getPoint().getName());
                 uploadPointsAnswer.addNew(point);
+            } else
+            {
+                point.setAddress(result.getPoint().getAddress());
+                uploadPointsAnswer.addUpdated(point);
             }
-            else uploadPointsAnswer.addUpdated(point);
 
             points.add(point);
 
             Beer beer = beerDao.getBeerByName(result.getBeerName());
 
-            Join join = createJoin(point.getId(), beer.getId(), result.getJoins());
-            join.setSalePoint(point);
-            join.setBeer(beer);
+            if(beer != null)
+            {
+                Join join = createJoin(point.getId(), beer.getId(), result.getJoins());
+                join.setSalePoint(point);
+                join.setBeer(beer);
 
-            point.getJoins().add(join);
+                point.getJoins().add(join);
+            }
 
             salePointDao.save(point);
         }
@@ -160,12 +166,12 @@ public class ExcelHelper
 
             Beer beer = null;
             beer = beerDao.getBeerByName(row.getCell(0).getStringCellValue());
-            if(beer != null)
+            if (beer != null)
             {
                 //add to updated
                 beersAnswer.addUpdated(beer);
-            }
-            else {
+            } else
+            {
                 //add to new
                 beer = new Beer();
                 beer.setName(row.getCell(0).getStringCellValue());
