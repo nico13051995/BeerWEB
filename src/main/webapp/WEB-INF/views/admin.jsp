@@ -16,11 +16,10 @@
 <body>
 
 <div id="wrapper">
-    <div class="adm-head">
+
+    <div class="adm-left-sidebar">
         <a href="${pageContext.request.contextPath}/">Адмін панель</a>
 
-    </div>
-    <div class="adm-left-sidebar">
         <button onclick="openAdmTab('item')" class="adm-tab">Точки продаж</button>
         <button onclick="openAdmTab('event')" class="adm-tab">Продукція</button>
         <%--<button onclick="openAdmTab('promotions')" class="adm-tab">Joins</button>--%>
@@ -31,33 +30,39 @@
         <div id="item" class="adm-container">
             <h2>Точки продажу</h2>
             <table class="users_table">
-                <tbody>
+
+                <thead>
                 <tr>
                     <th>Назва точки</th>
                     <th>Адрес</th>
                     <th>Кількість продукції</th>
                 </tr>
+                </thead>
+                 <tbody>
 
-                <c:forEach items="${points}" var="p">
-                    <tr>
-                        <td>${p.name}</td>
-                        <td>${p.address}</td>
-                        <td>${p.joins.size()}</td>
-                    </tr>
-                </c:forEach>
+                    <c:forEach items="${points}" var="p">
+                        <tr>
+                            <td>${p.name}</td>
+                            <td>${p.address}</td>
+                            <td>${p.joins.size()}</td>
+                        </tr>
+                    </c:forEach>
 
-                </tbody>
+                    </tbody>
             </table>
         </div>
         <div id="event" class="adm-container">
             <h2>Продукція</h2>
             <table class="users_table">
-                <tbody>
+                <thead>
                 <tr>
                     <th>Назва</th>
                     <th>Опис</th>
                     <th>Логотип</th>
                 </tr>
+                </thead>
+
+                <tbody>
                 <c:forEach items="${beers}" var="b">
                     <tr>
                         <td>${b.name}</td>

@@ -1,10 +1,13 @@
-
 /*Admin*/
-#wrapper {
-    height: 100vh;
-    overflow: hidden;
-}
+body{
+    background-color: #f1f2f4;
 
+}
+#wrapper {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+}
 .adm-head {
     background-color: white;
     height: 60px;
@@ -25,10 +28,21 @@
 }
 
 .adm-left-sidebar {
+    position: fixed;
     background-color: #34313a;
-    width: 250px;
-    height: 100%;
-    float: left;
+    width: 20%;
+    height: 100vh;
+}
+
+.adm-left-sidebar a{
+    display: block;
+    background-color: #713fa0;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    line-height: 60px;
 }
 
 .adm-tab {
@@ -52,14 +66,16 @@
 
 #adm-containers {
     background-color: #f1f2f4;
-    height: 100%;
+    height: 100vh;
     color: black;
     text-align: center;
+    width: 80%;
+    float: right;
 }
 
 #adm-containers h2 {
     padding: 10px;
-    margin: 0;
+    margin: 20px 0 45px;
     border-bottom: 1px solid #9d9d9d;
 }
 
