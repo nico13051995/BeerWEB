@@ -12,6 +12,7 @@ import com.melnychuk.managers.SalePointManager;
 import com.melnychuk.objects.ExcelParseResultForPoints;
 import com.melnychuk.objects.UploadBeersAnswer;
 import com.melnychuk.objects.UploadPointsAnswer;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -21,10 +22,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class ExcelHelper
@@ -164,26 +162,44 @@ public class ExcelHelper
         {
             XSSFRow row = sheet.getRow(i);
 
-            Beer beer = null;
-            beer = beerDao.getBeerByName(row.getCell(0).getStringCellValue());
-            if (beer != null)
+            if(getCellsSize(row) >= 3)
             {
-                //add to updated
-                beersAnswer.addUpdated(beer);
-            } else
-            {
-                //add to new
-                beer = new Beer();
-                beer.setName(row.getCell(0).getStringCellValue());
-                beer.setDescription(row.getCell(1).getStringCellValue());
-                beer.setLogo(row.getCell(2).getStringCellValue());
+                Beer beer = null;
+                beer = beerDao.getBeerByName(row.getCell(0).getStringCellValue());
+                if (beer != null)
+                {
+                    //add to updated
+                    beersAnswer.addUpdated(beer);
+                } else
+                {
+                    //add to new
+                    beer = new Beer();
+                    beer.setName(row.getCell(0).getStringCellValue());
+                    beer.setDescription(row.getCell(1).getStringCellValue());
+                    beer.setLogo(row.getCell(2).getStringCellValue());
 
-                beersAnswer.addNew(beer);
+                    beersAnswer.addNew(beer);
+                }
+
+                beerDao.save(beer);
             }
-
-            beerDao.save(beer);
         }
 
         return beersAnswer;
     }
+
+
+    private int getCellsSize(XSSFRow row)
+    {
+        int size = 0;
+
+        Iterator<Cell> cellIterator = row.cellIterator();
+        while (cellIterator.hasNext())
+        {
+            cellIterator.next();
+            size++;
+        }
+        return size;
+    }
+
 }
