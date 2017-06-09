@@ -56,25 +56,33 @@ public class ExcelHelper
         XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
         XSSFSheet sheet = workbook.getSheetAt(0);
 
-
         for (int i = 1; i < sheet.getLastRowNum() + 1; i++)
         {
-            XSSFRow row = sheet.getRow(i);
 
-            SalePoint sp = new SalePoint();
-            sp.setName(row.getCell(Config.POINT_NAME_CELL).getStringCellValue());
-            sp.setAddress(row.getCell(Config.POINT_ADDRESS_CELL).getStringCellValue());
-
-            String beerName = row.getCell(Config.BEER_NAME_CELL).getStringCellValue();
-
-            boolean[] joins = new boolean[Config.JOINS_COUNT];
-            for (int j = 0; j < joins.length; j++)
+            try
             {
-                String value = row.getCell(Config.BEER_NAME_CELL + (j + 1)).getStringCellValue();
-                joins[j] = value.equals("+");
+                XSSFRow row = sheet.getRow(i);
+
+                SalePoint sp = new SalePoint();
+                sp.setName(row.getCell(Config.POINT_NAME_CELL).getStringCellValue());
+                sp.setAddress(row.getCell(Config.POINT_ADDRESS_CELL).getStringCellValue());
+
+                String beerName = row.getCell(Config.BEER_NAME_CELL).getStringCellValue();
+
+                boolean[] joins = new boolean[Config.JOINS_COUNT];
+                for (int j = 0; j < joins.length; j++)
+                {
+                    String value = row.getCell(Config.BEER_NAME_CELL + (j + 1)).getStringCellValue();
+                    joins[j] = value.equals("+");
+                }
+
+                results.add(new ExcelParseResultForPoints(sp, beerName, joins));
+            }
+            catch (Exception e)
+            {
+                break;
             }
 
-            results.add(new ExcelParseResultForPoints(sp, beerName, joins));
         }
 
         return results;
@@ -83,12 +91,12 @@ public class ExcelHelper
     private UploadPointsAnswer prepareToInsert(List<ExcelParseResultForPoints> results) throws InterruptedException, ApiException, IOException
     {
         UploadPointsAnswer uploadPointsAnswer = new UploadPointsAnswer();
-        Set<SalePoint> points = new HashSet<SalePoint>(results.size() / 2);
+//        Set<SalePoint> points = new HashSet<SalePoint>(results.size() / 2);
 
         SalePoint point = null;
         for (ExcelParseResultForPoints result : results)
         {
-            point = salePointDao.getPointByName(result.getPoint().getName());
+            point = salePointDao.getPointByNameAndAddress(result.getPoint().getName(), result.getPoint().getAddress());
             if (point == null)
             {
                 //TODO new point!
@@ -99,15 +107,15 @@ public class ExcelHelper
 
                 salePointDao.save(newPoint);
 
-                point = salePointDao.getPointByName(result.getPoint().getName());
-                uploadPointsAnswer.addNew(point);
+                uploadPointsAnswer.addNew(newPoint);
             } else
             {
                 point.setAddress(result.getPoint().getAddress());
+
                 uploadPointsAnswer.addUpdated(point);
             }
 
-            points.add(point);
+//            points.add(point);
 
             Beer beer = beerDao.getBeerByName(result.getBeerName());
 

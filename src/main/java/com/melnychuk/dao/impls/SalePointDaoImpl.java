@@ -48,11 +48,12 @@ public class SalePointDaoImpl implements SalePointDao
 
     @Transactional
     @Override
-    public SalePoint getPointByName(String name)
+    public SalePoint getPointByNameAndAddress(String name, String address)
     {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SalePoint.class);
         Criteria criteria = detachedCriteria.getExecutableCriteria(sessionFactory.getCurrentSession());
         criteria.add(Restrictions.eq("name", name));
+        criteria.add(Restrictions.eq("address", address));
 
         return (SalePoint) criteria.uniqueResult();
     }

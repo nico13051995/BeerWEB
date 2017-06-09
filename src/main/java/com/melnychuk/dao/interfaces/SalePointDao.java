@@ -10,7 +10,7 @@ public interface SalePointDao
 
     SalePoint getPointById(int id);
 
-    SalePoint getPointByName(String name);
+    SalePoint getPointByNameAndAddress(String name, String address);
 
     void save(SalePoint salePoint);
 }

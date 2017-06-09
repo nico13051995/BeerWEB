@@ -30,26 +30,42 @@
         <div id="item" class="adm-container">
             <h2>Точки продажу</h2>
             <table class="users_table">
-
                 <thead>
                 <tr>
                     <th>Назва точки</th>
                     <th>Адрес</th>
                     <th>Кількість продукції</th>
+                    <th></th>
                 </tr>
                 </thead>
-                 <tbody>
-
-                    <c:forEach items="${points}" var="p">
-                        <tr>
-                            <td>${p.name}</td>
-                            <td>${p.address}</td>
-                            <td>${p.joins.size()}</td>
-                        </tr>
-                    </c:forEach>
-
-                    </tbody>
+                <tbody>
+                <c:forEach items="${points}" var="p">
+                    <tr sp-id="${p.id}">
+                        <td>${p.name}</td>
+                        <td>${p.address}</td>
+                        <td>${p.joins.size()}</td>
+                        <td>
+                            <button onclick="editSP('${p.id}');"><i class="fa fa-pencil-square"></i></button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
+
+            <div id="sp-edit">
+                <h4>Точка продажу:</h4>
+                <div class="sp-edit-content">
+                    <input id="sp-id" type="hidden"/>
+                    <input id="sp-name" type="text" placeholder="name"/>
+                    <input id="sp-adr" type="text" placeholder="address"/>
+
+                    <button onclick="sendEditedSP()">Edit</button>
+                </div>
+
+                <button onclick="$('#sp-edit').hide();" id="sp-edit-exit">
+                    <i class="fa fa-times fa-2x fa-fw"></i>
+                </button>
+            </div>
         </div>
         <div id="event" class="adm-container">
             <h2>Продукція</h2>
@@ -160,7 +176,6 @@
                             </c:if>
 
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -173,6 +188,8 @@
 <script src="${contextPath}resources/js/common.js"></script>
 <script>
     $(document).ready(function () {
+        $('#sp-edit').hide();
+
         $('#filePoint:file').change(function () {
             var fileName = $(this).val();
             fileName = fileName.split('\\');
@@ -183,7 +200,6 @@
 
             $('#filelabelPoint').text(fileName);
         });
-
         $('#fileBeer:file').change(function () {
             var fileName = $(this).val();
             fileName = fileName.split('\\');
@@ -194,7 +210,35 @@
 
             $('#filelabelBeer').text(fileName);
         });
+
     });
+
+    function editSP(spId) {
+        $('#sp-edit').show();
+
+        var point = $('tr[sp-id="'+ spId +'"]');
+//        console.log(point[0].children);
+
+        var info = point[0].children;
+//        console.log(info[0].outerText);
+
+        $('#sp-id').val(spId);
+        $('#sp-name').val(info[0].outerText);
+        $('#sp-adr').val(info[1].outerText);
+    }
+
+    function sendEditedSP(spId) {
+        var info = $('#sp-id').val() + '-' + $('#sp-name').val() + '-' + $('#sp-adr').val();
+//        console.log(info);
+
+        $.ajax({
+            url: 'changePoint/' + info,
+            method: 'POST',
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    }
 </script>
 </body>
 </html>

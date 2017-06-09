@@ -146,4 +146,23 @@ public class MainController
 
         return model;
     }
+
+    @RequestMapping(value = "/changePoint/{info:.+}", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String changePoint(@PathVariable String info)
+    {
+
+        String[] parsed = info.split("-");
+        SalePoint sp = salePointDao.getPointById(Integer.parseInt(parsed[0]));
+        sp.setName(parsed[1]);
+        sp.setAddress(parsed[2]);
+
+
+        System.out.println(sp);
+
+        salePointDao.save(sp);
+
+
+        return sp.toString();
+    }
 }
