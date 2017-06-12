@@ -138,12 +138,12 @@ function createListForPoints() {
 function createPoint(point) {
     //console.log(point);
     var adr = point.address;
-    adr = adr.split(',');
-    var lastItem = adr[adr.length - 1];
-    adr[adr.length - 1] = ' ' + adr[0];
-    lastItem = lastItem.trim();
-
-    adr[0] = lastItem;
+    // adr = adr.split(',');
+    // var lastItem = adr[adr.length - 1];
+    // adr[adr.length - 1] = ' ' + adr[0];
+    // lastItem = lastItem.trim();
+    //
+    // adr[0] = lastItem;
 
 
     var info = point.name + '<br>' + Math.round(point.distance * 100) / 100;

@@ -13,6 +13,7 @@ import com.melnychuk.objects.UploadPointsAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -147,6 +148,7 @@ public class MainController
         return model;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/changePoint/{info:.+}", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String changePoint(@PathVariable String info)
@@ -159,7 +161,6 @@ public class MainController
 
 
         System.out.println(sp);
-
         salePointDao.save(sp);
 
 
