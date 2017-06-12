@@ -180,13 +180,13 @@ body{
     content: '1';
 }
 .g05{
-    background: url("../images/beer-mug.svg");
+    background: url("../images/beer.svg");
 }
 .g05::after{
     content: '0.5';
 }
 .g33{
-    background: url("../images/beer-mug.svg");
+    background: url("../images/beer.svg");
 }
 .g33::after{
     content: '0.33';
