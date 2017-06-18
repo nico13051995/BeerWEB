@@ -65,4 +65,11 @@ public class SalePointDaoImpl implements SalePointDao
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.saveOrUpdate(salePoint);
     }
+
+    @Override
+    public void delete(int id)
+    {
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.delete(id);
+    }
 }

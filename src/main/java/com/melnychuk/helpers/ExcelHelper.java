@@ -99,6 +99,7 @@ public class ExcelHelper
             point = salePointDao.getPointByNameAndAddress(result.getPoint().getName(), result.getPoint().getAddress());
             if (point == null)
             {
+                System.out.println(String.format("New: %s at [%s]", result.getPoint().getName(), result.getPoint().getAddress()));
                 //TODO new point!
                 SalePoint newPoint = result.getPoint();
                 LatLng latLng = pointManager.makeGeocodeDataFromInfo(newPoint.getAddress());
@@ -106,10 +107,12 @@ public class ExcelHelper
                 newPoint.setLng(latLng.lng);
 
                 salePointDao.save(newPoint);
+                point = salePointDao.getPointByNameAndAddress(newPoint.getName(), newPoint.getAddress());
 
                 uploadPointsAnswer.addNew(newPoint);
             } else
             {
+                System.out.println(String.format("Up: %s", point.getName()));
                 point.setAddress(result.getPoint().getAddress());
 
                 uploadPointsAnswer.addUpdated(point);
@@ -119,7 +122,7 @@ public class ExcelHelper
 
             Beer beer = beerDao.getBeerByName(result.getBeerName());
 
-            if(beer != null)
+            if(beer != null && point != null)
             {
                 Join join = createJoin(point.getId(), beer.getId(), result.getJoins());
                 join.setSalePoint(point);

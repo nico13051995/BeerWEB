@@ -45,7 +45,8 @@
                         <td>${p.address}</td>
                         <td>${p.joins.size()}</td>
                         <td>
-                            <button onclick="editSP('${p.id}');"><i class="fa fa-pencil-square"></i></button>
+                            <button class="b-control" onclick="editSP('${p.id}');"><i class="fa fa-pencil-square fa-2x"></i></button>
+                            <button class="b-control" onclick="deleteSp('${p.id}');"><i class="fa fa-minus-circle  fa-2x"></i></button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -229,13 +230,23 @@
 
     function sendEditedSP(spId) {
         var info = $('#sp-id').val() + '-' + $('#sp-name').val() + '-' + $('#sp-adr').val();
-//        console.log(info);
 
         $.ajax({
             url: 'changePoint/' + info,
             method: 'POST',
             success: function (response) {
+                location.reload();
+            }
+        });
+    }
+
+    function deleteSp(spId) {
+        $.ajax({
+            url: 'deletePoint/' + spId,
+            method: 'POST',
+            success: function (response) {
                 console.log(response);
+                location.reload();
             }
         });
     }

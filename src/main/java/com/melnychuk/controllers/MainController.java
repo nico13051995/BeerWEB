@@ -166,4 +166,16 @@ public class MainController
 
         return sp.toString();
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/deletePoint/{id}", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String deletePoint(@PathVariable int id)
+    {
+
+        salePointDao.delete(id);
+
+
+        return "{\"status\":\"deleted\"}";
+    }
 }

@@ -13,4 +13,6 @@ public interface SalePointDao
     SalePoint getPointByNameAndAddress(String name, String address);
 
     void save(SalePoint salePoint);
+
+    void delete(int id);
 }
