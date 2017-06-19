@@ -74,7 +74,8 @@ public class SalePointManagerImpl implements SalePointManager
         GeocodingResult[] results = req.await();
         // Handle successful request.
 
-        return results[0].geometry.location;
+        if(results.length > 0) return results[0].geometry.location;
+        return null;
     }
 
     @Override

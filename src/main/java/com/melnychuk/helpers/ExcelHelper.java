@@ -103,8 +103,13 @@ public class ExcelHelper
                 //TODO new point!
                 SalePoint newPoint = result.getPoint();
                 LatLng latLng = pointManager.makeGeocodeDataFromInfo(newPoint.getAddress());
-                newPoint.setLat(latLng.lat);
-                newPoint.setLng(latLng.lng);
+                if(latLng != null)
+                {
+                    newPoint.setLat(latLng.lat);
+                    newPoint.setLng(latLng.lng);
+                } else {
+                    uploadPointsAnswer.AddMsg(String.format("Некоректна адреса %s", newPoint.getAddress()));
+                }
 
                 salePointDao.save(newPoint);
                 point = salePointDao.getPointByNameAndAddress(newPoint.getName(), newPoint.getAddress());
