@@ -233,9 +233,9 @@
 
         $.ajax({
             url: 'changePoint/' + info,
-            method: 'POST',
+            method: 'PUT',
             success: function (response) {
-                location.reload();
+                window.location.reload();
             }
         });
     }
@@ -243,10 +243,9 @@
     function deleteSp(spId) {
         $.ajax({
             url: 'deletePoint/' + spId,
-            method: 'POST',
+            method: 'DELETE',
             success: function (response) {
-                console.log(response);
-                location.reload();
+                window.location.reload();
             }
         });
     }
