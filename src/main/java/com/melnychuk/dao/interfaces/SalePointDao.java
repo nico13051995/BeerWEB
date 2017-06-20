@@ -14,5 +14,5 @@ public interface SalePointDao
 
     void save(SalePoint salePoint);
 
-    void delete(int id);
+    void delete(SalePoint salePoint);
 }

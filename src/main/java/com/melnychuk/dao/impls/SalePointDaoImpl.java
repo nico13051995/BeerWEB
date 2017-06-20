@@ -67,9 +67,9 @@ public class SalePointDaoImpl implements SalePointDao
     }
 
     @Override
-    public void delete(int id)
+    public void delete(SalePoint salePoint)
     {
         Session currentSession = sessionFactory.getCurrentSession();
-        currentSession.delete(id);
+        currentSession.delete(salePoint);
     }
 }

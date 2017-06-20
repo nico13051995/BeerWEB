@@ -173,7 +173,8 @@ public class MainController
     public String deletePoint(@PathVariable int id)
     {
 
-        salePointDao.delete(id);
+        SalePoint point = salePointDao.getPointById(id);
+        salePointDao.delete(point);
 
 
         return "{\"status\":\"deleted\"}";
