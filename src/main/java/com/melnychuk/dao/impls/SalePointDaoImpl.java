@@ -66,6 +66,7 @@ public class SalePointDaoImpl implements SalePointDao
         currentSession.saveOrUpdate(salePoint);
     }
 
+    @Transactional
     @Override
     public void delete(SalePoint salePoint)
     {

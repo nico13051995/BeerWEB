@@ -233,20 +233,25 @@
 
         $.ajax({
             url: 'changePoint/' + info,
-            method: 'PUT',
-            success: function (response) {
-                window.location.reload();
-            }
+            method: 'PUT'
+//            success: function (response) {
+////                window.location.reload();
+//                var tds = $('tr[sp-id=\''+ $('#sp-id').val() +'\']').children();
+//
+//                tds[0].text($('#sp-name').val());
+//                tds[1].text($('#sp-adr').val());
+//            }
+        }).done(function (data) {
+            location.reload();
         });
     }
 
     function deleteSp(spId) {
         $.ajax({
             url: 'deletePoint/' + spId,
-            method: 'DELETE',
-            success: function (response) {
-                window.location.reload();
-            }
+            method: 'DELETE'
+        }).done(function (data) {
+            location.reload();
         });
     }
 </script>
