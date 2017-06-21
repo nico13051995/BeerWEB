@@ -162,7 +162,7 @@ public class MainController
         salePointDao.save(sp);
 
 
-        return sp.toString();
+        return "{\"status\":\"changed\"}";
     }
 
     @RequestMapping(value = "/deletePoint/{id}", method = RequestMethod.DELETE, produces = "application/json; charset=utf-8")
