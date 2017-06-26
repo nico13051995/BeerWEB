@@ -23,17 +23,15 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+<!--
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-        <!--<property name="url" value="jdbc:mysql://localhost:3306/heroku_b196e4189240738?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8" />-->
         <property name="url" value="jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11181888?autoReconnect=true&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8" />
-        <!--<property name="username" value="ba845ca510e3ff" />-->
-        <!--<property name="password" value="9e5ed8c7" />-->
         <property name="username" value="sql11181888" />
         <property name="password" value="NFneAhMxyh" />
     </bean>
-
+-->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:hibernate.cfg.xml"/>

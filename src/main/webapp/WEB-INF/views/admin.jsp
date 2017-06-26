@@ -131,6 +131,14 @@
                                             </c:forEach>
                                         </ul>
                                     </div>
+                                    <div class="ignored">
+                                        <h3>Проіноровані точки:</h3>
+                                        <ul class="result-ignored">
+                                            <c:forEach items="${answerBeer.ignoredPoints}" var="ig">
+                                                <li>${ig.name}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
                                 </div>
                             </c:if>
 
@@ -170,6 +178,14 @@
                                         <ul class="result-updated">
                                             <c:forEach items="${answerBeer.updatedBeers}" var="up">
                                                 <li>${up.name}</li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                    <div class="ignored">
+                                        <h3>Проіноровані товари:</h3>
+                                        <ul class="result-ignored">
+                                            <c:forEach items="${answerBeer.ignoredBeers}" var="ig">
+                                                <li>${ig.name}</li>
                                             </c:forEach>
                                         </ul>
                                     </div>

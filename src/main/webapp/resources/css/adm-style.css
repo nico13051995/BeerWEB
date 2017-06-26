@@ -186,6 +186,11 @@ body{
     background-color: #fcf8e3;
     border-color: #faebcc;
 }
+.ignored{
+    background-color: #fce3e3;
+    border-color: #e00000;
+}
+
 #sp-edit{
     position: fixed;
     top: 50%;

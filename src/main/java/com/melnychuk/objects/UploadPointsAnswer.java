@@ -13,6 +13,8 @@ public class UploadPointsAnswer
     private Set<SalePoint> newPoints = new HashSet<SalePoint>();
     private Set<SalePoint> updatedPoints = new HashSet<SalePoint>();
 
+    private Set<SalePoint> ignoredPoints = new HashSet<SalePoint>();
+
     private List<String> messages = new ArrayList<String>();
 
     public void addNew(SalePoint point)
@@ -40,5 +42,9 @@ public class UploadPointsAnswer
     public List<String> getMessages()
     {
         return messages;
+    }
+
+    public void addIgnoredPoints(SalePoint p) {
+        ignoredPoints.add(p);
     }
 }

@@ -25,23 +25,20 @@ import java.io.IOException;
 import java.util.*;
 
 @Component
-public class ExcelHelper
-{
+public class ExcelHelper {
     private final BeerDao beerDao;
     private final SalePointDao salePointDao;
 
     private final SalePointManager pointManager;
 
     @Autowired
-    public ExcelHelper(BeerDao beerDao, SalePointDao salePointDao, SalePointManager pointManager)
-    {
+    public ExcelHelper(BeerDao beerDao, SalePointDao salePointDao, SalePointManager pointManager) {
         this.beerDao = beerDao;
         this.salePointDao = salePointDao;
         this.pointManager = pointManager;
     }
 
-    public UploadPointsAnswer readPointsFromExcel(File file) throws IOException, ApiException, InterruptedException
-    {
+    public UploadPointsAnswer readPointsFromExcel(File file) throws IOException, ApiException, InterruptedException {
         List<ExcelParseResultForPoints> results = parseFile(file);
 
         UploadPointsAnswer answer = prepareToInsert(results);
@@ -49,18 +46,15 @@ public class ExcelHelper
         return answer;
     }
 
-    private List<ExcelParseResultForPoints> parseFile(File file) throws IOException
-    {
+    private List<ExcelParseResultForPoints> parseFile(File file) throws IOException {
         List<ExcelParseResultForPoints> results = new ArrayList<ExcelParseResultForPoints>();
 
         XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
         XSSFSheet sheet = workbook.getSheetAt(0);
 
-        for (int i = 1; i < sheet.getLastRowNum() + 1; i++)
-        {
+        for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
 
-            try
-            {
+            try {
                 XSSFRow row = sheet.getRow(i);
 
                 SalePoint sp = new SalePoint();
@@ -70,17 +64,16 @@ public class ExcelHelper
                 String beerName = row.getCell(Config.BEER_NAME_CELL).getStringCellValue();
 
                 boolean[] joins = new boolean[Config.JOINS_COUNT];
-                for (int j = 0; j < joins.length; j++)
-                {
+                for (int j = 0; j < joins.length; j++) {
                     String value = row.getCell(Config.BEER_NAME_CELL + (j + 1)).getStringCellValue();
                     joins[j] = value.equals("+");
                 }
 
                 results.add(new ExcelParseResultForPoints(sp, beerName, joins));
-            }
-            catch (Exception e)
-            {
-                break;
+
+            } catch (NullPointerException ex) {
+                results.add(new ExcelParseResultForPoints(null, null, null, "Стрічка " + i + " не відповідає формату!!!"));
+                continue;
             }
 
         }
@@ -88,23 +81,23 @@ public class ExcelHelper
         return results;
     }
 
-    private UploadPointsAnswer prepareToInsert(List<ExcelParseResultForPoints> results) throws InterruptedException, ApiException, IOException
-    {
+    private UploadPointsAnswer prepareToInsert(List<ExcelParseResultForPoints> results) throws InterruptedException, ApiException, IOException {
         UploadPointsAnswer uploadPointsAnswer = new UploadPointsAnswer();
 //        Set<SalePoint> points = new HashSet<SalePoint>(results.size() / 2);
 
         SalePoint point = null;
-        for (ExcelParseResultForPoints result : results)
-        {
+        for (ExcelParseResultForPoints result : results) {
+            if(result.getError() != null) {
+                uploadPointsAnswer.addIgnoredPoints(new SalePoint(result.getError(), null));
+                continue;
+            }
             point = salePointDao.getPointByNameAndAddress(result.getPoint().getName(), result.getPoint().getAddress());
-            if (point == null)
-            {
+            if (point == null) {
                 System.out.println(String.format("New: %s at [%s]", result.getPoint().getName(), result.getPoint().getAddress()));
                 //TODO new point!
                 SalePoint newPoint = result.getPoint();
                 LatLng latLng = pointManager.makeGeocodeDataFromInfo(newPoint.getAddress());
-                if(latLng != null)
-                {
+                if (latLng != null) {
                     newPoint.setLat(latLng.lat);
                     newPoint.setLng(latLng.lng);
                 } else {
@@ -115,8 +108,7 @@ public class ExcelHelper
                 point = salePointDao.getPointByNameAndAddress(newPoint.getName(), newPoint.getAddress());
 
                 uploadPointsAnswer.addNew(newPoint);
-            } else
-            {
+            } else {
                 System.out.println(String.format("Up: %s", point.getName()));
                 point.setAddress(result.getPoint().getAddress());
 
@@ -127,8 +119,7 @@ public class ExcelHelper
 
             Beer beer = beerDao.getBeerByName(result.getBeerName());
 
-            if(beer != null && point != null)
-            {
+            if (beer != null && point != null) {
                 Join join = createJoin(point.getId(), beer.getId(), result.getJoins());
                 join.setSalePoint(point);
                 join.setBeer(beer);
@@ -142,8 +133,7 @@ public class ExcelHelper
         return uploadPointsAnswer;
     }
 
-    private Join createJoin(int pointID, int beerID, boolean[] joins)
-    {
+    private Join createJoin(int pointID, int beerID, boolean[] joins) {
         Join join = new Join();
         join.setPointId(pointID);
         join.setBeerId(beerID);
@@ -160,44 +150,42 @@ public class ExcelHelper
     }
 
 
-    public UploadBeersAnswer readBeersFromExcel(File file) throws IOException
-    {
+    public UploadBeersAnswer readBeersFromExcel(File file) throws IOException {
         UploadBeersAnswer beersAnswer = parseBeerExcel(file);
 
         return beersAnswer;
     }
 
-    private UploadBeersAnswer parseBeerExcel(File file) throws IOException
-    {
+    private UploadBeersAnswer parseBeerExcel(File file) throws IOException {
         UploadBeersAnswer beersAnswer = new UploadBeersAnswer();
 
         XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
         XSSFSheet sheet = workbook.getSheetAt(0);
 
-        for (int i = 1; i < sheet.getLastRowNum() + 1; i++)
-        {
+        for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
             XSSFRow row = sheet.getRow(i);
+            Beer beer = null;
+            try {
+                if (getCellsSize(row) >= 3) {
+                    beer = beerDao.getBeerByName(row.getCell(0).getStringCellValue());
+                    if (beer != null) {
+                        //add to updated
+                        beersAnswer.addUpdated(beer);
+                    } else {
+                        //add to new
+                        beer = new Beer();
+                        beer.setName(row.getCell(0).getStringCellValue());
+                        beer.setDescription(row.getCell(1).getStringCellValue());
+                        beer.setLogo(row.getCell(2).getStringCellValue());
 
-            if(getCellsSize(row) >= 3)
-            {
-                Beer beer = null;
-                beer = beerDao.getBeerByName(row.getCell(0).getStringCellValue());
-                if (beer != null)
-                {
-                    //add to updated
-                    beersAnswer.addUpdated(beer);
-                } else
-                {
-                    //add to new
-                    beer = new Beer();
-                    beer.setName(row.getCell(0).getStringCellValue());
-                    beer.setDescription(row.getCell(1).getStringCellValue());
-                    beer.setLogo(row.getCell(2).getStringCellValue());
+                        beersAnswer.addNew(beer);
+                    }
 
-                    beersAnswer.addNew(beer);
+                    beerDao.save(beer);
                 }
-
-                beerDao.save(beer);
+            } catch (NullPointerException ex) {
+                beer.setName("Стрічка: " + i + " містить поле, що має пусте значення!!!");
+                beersAnswer.addIgnored(beer);
             }
         }
 
@@ -205,13 +193,11 @@ public class ExcelHelper
     }
 
 
-    private int getCellsSize(XSSFRow row)
-    {
+    private int getCellsSize(XSSFRow row) {
         int size = 0;
 
         Iterator<Cell> cellIterator = row.cellIterator();
-        while (cellIterator.hasNext())
-        {
+        while (cellIterator.hasNext()) {
             cellIterator.next();
             size++;
         }
