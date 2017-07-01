@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "sp_to_beer", schema = "heroku_b196e4189240738")
+@Table(name = "sp_to_beer")
 public class Join
 {
     private int id;

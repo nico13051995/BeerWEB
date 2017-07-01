@@ -21,12 +21,18 @@ public class HikariCPConfig {
     public DataSource dataSource() {
         final HikariDataSource ds = new HikariDataSource();
         ds.setMaximumPoolSize(10);
-        ds.setDriverClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
-        ds.setJdbcUrl("jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11181888?autoReconnect=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8");
-        ds.setUsername("sql11181888");
-        ds.setPassword("NFneAhMxyh");
+        ds.setDriverClassName("org.postgresql.Driver");
+        ds.setJdbcUrl("jdbc:postgresql://ec2-54-228-235-185.eu-west-1.compute.amazonaws.com:5432/ddmtmeb9el11mc?sslmode=require&autoReconnect=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8");
+        ds.setUsername("yszzpivdnvgjbp");
+        ds.setPassword("06cd0cdf96dc7899caa400ca586f5b50416f1f5b8ea2c3e5b68c9fe0bcfc3cda");
+/*
+        ds.setJdbcUrl("jdbc:postgresql://127.0.0.1/test?autoReconnect=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8");
+        ds.setUsername("postgres");
+        ds.setPassword("root");
+*/
         ds.addDataSourceProperty("zeroDateTimeBehavior", "convertToNull");
         ds.addDataSourceProperty("autoReconnect", true);
+        ds.addDataSourceProperty("ssl.mode", "enable");
         return ds;
     }
 }

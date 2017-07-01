@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "sale_points", schema = "heroku_b196e4189240738")
+@Table(name = "sale_points")
 public class SalePoint
 {
     private int id;
