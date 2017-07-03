@@ -134,7 +134,7 @@
                                     <div class="ignored">
                                         <h3>Проігноровані точки:</h3>
                                         <ul class="result-ignored">
-                                            <c:forEach items="${answerBeer.ignoredPoints}" var="ig">
+                                            <c:forEach items="${answerPoint.ignoredPoints}" var="ig">
                                                 <li>${ig.name}</li>
                                             </c:forEach>
                                         </ul>
