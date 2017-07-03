@@ -25,7 +25,8 @@ public class Join
     private Beer beer;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId()
     {
         return id;

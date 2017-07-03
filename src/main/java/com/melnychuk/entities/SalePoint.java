@@ -32,7 +32,8 @@ public class SalePoint
 //    private Set<Beer> beers = new HashSet<Beer>(0);
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId()
     {
         return id;
