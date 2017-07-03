@@ -20,7 +20,7 @@ public class HikariCPConfig {
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         final HikariDataSource ds = new HikariDataSource();
-        ds.setMaximumPoolSize(10);
+        ds.setMaximumPoolSize(5);
         ds.setDriverClassName("org.postgresql.Driver");
         ds.setJdbcUrl("jdbc:postgresql://ec2-54-228-235-185.eu-west-1.compute.amazonaws.com:5432/ddmtmeb9el11mc?sslmode=require&autoReconnect=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8");
         ds.setUsername("yszzpivdnvgjbp");

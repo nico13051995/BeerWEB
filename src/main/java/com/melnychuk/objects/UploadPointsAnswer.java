@@ -39,6 +39,11 @@ public class UploadPointsAnswer
 
     public void AddMsg(String msg) { messages.add(msg); }
 
+    public Set<SalePoint> getIgnoredPoints()
+    {
+        return ignoredPoints;
+    }
+
     public List<String> getMessages()
     {
         return messages;
@@ -47,4 +52,5 @@ public class UploadPointsAnswer
     public void addIgnoredPoints(SalePoint p) {
         ignoredPoints.add(p);
     }
+
 }
