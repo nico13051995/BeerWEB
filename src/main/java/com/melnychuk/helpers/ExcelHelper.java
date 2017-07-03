@@ -71,7 +71,7 @@ public class ExcelHelper {
 
                 results.add(new ExcelParseResultForPoints(sp, beerName, joins));
 
-            } catch (NullPointerException ex) {
+            } catch (Exception ex) {
                 results.add(new ExcelParseResultForPoints(null, null, null, "Стрічка " + i + " не відповідає формату!!!"));
                 continue;
             }
@@ -183,7 +183,7 @@ public class ExcelHelper {
 
                     beerDao.save(beer);
                 }
-            } catch (NullPointerException ex) {
+            } catch (Exception ex) {
                 beer.setName("Стрічка: " + i + " містить поле, що має пусте значення!!!");
                 beersAnswer.addIgnored(beer);
             }
